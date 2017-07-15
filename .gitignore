@@ -1,6 +1,5 @@
 [A
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-.gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !.keep
@@ -22,7 +21,6 @@ out
 
 # IDEs and editors
 workspace.xml
-.idea
 .gradle
 .project
 .classpath
@@ -52,6 +50,6 @@ testem.log
 
 #System Files
 .DS_Store
-Thumbs.db
+Thumbs.dbe
 
 target/*
