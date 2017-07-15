@@ -1,0 +1,73 @@
+@import "functions";
+@import "palette";
+
+md-input-container {
+    margin: 0 !important;
+
+    .mat-input-wrapper {
+        padding: 0 !important;
+
+        input {
+            background: white;
+            border: 1px solid $grey-4 !important;
+            border-bottom: 0 !important;
+            line-height: 29px;
+            padding: 0 9px;
+            height: 30px;
+            font-family: $font-family-Renault;
+
+            &[disabled] {
+                background: $grey-4;
+            }
+
+            @include host-context('.crud-mode-read') {
+                &[disabled] {
+                    background: inherit;
+                    color: inherit;
+                    border: 0 !important;
+                    border-left: 1px solid $grey-4 !important;
+                }
+            }
+        }
+
+        .mat-input-placeholder-wrapper {
+            line-height: 29px;
+            .mat-input-placeholder {
+                padding-left: 9px;
+                line-height: 31px;
+            }
+        }
+
+        .mat-input-underline {
+            margin-top: 0;
+
+            &.mat-disabled {
+                display: none;
+            }
+        }
+
+        @include host-context(app-custom-datatable) {
+            margin-top: 0;
+        }
+
+        @include host-context('app-custom-datatable .header') {
+            margin-bottom: 0;
+        }
+    }
+
+    &.mat-focused .mat-input-placeholder.mat-float, .mat-input-placeholder.mat-float:not(.mat-empty) {
+        transform: translateY(-2.2em) scale(.75) !important;
+    }
+
+    &.with-label {
+        .mat-input-wrapper {
+            margin-top: 5px;
+        }
+    }
+
+}
+
+input::-ms-clear {
+    width : 0;
+    height: 0;
+}

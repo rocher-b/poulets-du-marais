@@ -1,0 +1,97 @@
+@import "functions";
+@import "palette";
+
+md-tab-group {
+
+    md-tab-header {
+        border-bottom: 0 !important;
+        background: white;
+        padding-top: 10px;
+
+        .mat-ink-bar {
+            height: 3px;
+        }
+
+        .mat-tab-labels {
+            padding: 0 10px;
+            border-bottom: 3px solid $grey-4 !important;
+
+            .mat-tab-label {
+                line-height: rem(5.8);
+                height: rem(5.8);
+                padding: 0 12px;
+                min-width: 100px;
+                font-family: $font-family-Renault !important;
+                font-size: rem(1.6) !important;
+                color: $grey-1 !important;
+                opacity: 1 !important;
+
+                .with-subtitle {
+                    font-family: $font-family-Renault !important;
+                    line-height: 18px;
+                    padding-top: 15px;
+                }
+
+                &:focus {
+                    background: none !important;
+                }
+
+                &.mat-tab-label-active {
+                    color: #1e1b1c !important;
+                    font-weight: bold !important;
+                }
+
+                &.mat-tab-disabled {
+                    color: $grey-3 !important;
+                }
+
+                .subtitle {
+                    line-height: rem(1.2);
+                    color: $grey-1;
+                    font-family: $font-family-Renault;
+                    font-size: rem(1.2);
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        @include host-context(app-task-data) {
+            padding-top: 40px;
+        }
+
+    }
+
+    // to remove padding from inside the tab group (and have the content stick to the outside borders)
+    &.no-inside-padding {
+        md-tab-body {
+            padding: 0 0 10px 0 !important;
+        }
+
+        .mat-tab-body-wrapper {
+            padding-right: 0;
+        }
+
+        md-tab-header {
+            padding-top: 0;
+        }
+    }
+
+    .mat-tab-body-wrapper {
+        padding: 0 10px 10px 0;
+        height: 100%;
+
+        md-tab-body {
+            padding: 20px 6px 10px 24px;
+            overflow: hidden !important;
+
+            .title {
+                font-family: $font-family-Renault;
+                font-size: rem(1.4);
+                color: $grey-1;
+                text-transform: uppercase;
+                padding: 0 0 10px 0;
+            }
+        }
+    }
+
+}

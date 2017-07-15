@@ -1,0 +1,31 @@
+<div layout="column">
+    <a class="entry"
+       [routerLink]="['/home']"
+       routerLinkActive="active-link"
+       layout-fill-width>
+        Accueil
+    </a>
+
+    <a class="entry"
+       [routerLink]="['/data']"
+       routerLinkActive="active-link"
+       layout-fill-width>
+        Données
+    </a>
+    <div [class.opened]="groupOpened"
+         class="submenu">
+        <div class="subentry"
+             [routerLink]="['/assignment']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            {{ 'MENU.AFFECTATION' }}
+        </div>
+        <div class="subentry"
+             [routerLink]="['/axis-mapping']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            {{ 'MENU.CORRESPONDANCE' }}
+        </div>
+    </div>
+
+</div>

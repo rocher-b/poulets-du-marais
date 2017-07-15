@@ -1,0 +1,32 @@
+@import "functions";
+@import "palette";
+
+md-chip {
+    background: $grey-1 !important;
+    color: white !important;
+    font-size: rem(1);
+    line-height: rem(1.6);
+    border-radius: 100px;
+    text-align: center;
+    padding: 1px 10px 0 10px;
+    display: inline-block;
+    white-space: nowrap;
+    text-transform: none !important;
+
+    &[color=primary] {
+        background: $primary !important;
+        color: black !important;
+    }
+
+    &[color=warn] {
+        background: $warn !important;
+    }
+
+    &[color=error] {
+        background: $error !important;
+    }
+
+    &[color=success] {
+        background: $success !important;
+    }
+}

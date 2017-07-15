@@ -1,0 +1,59 @@
+@import "palette";
+@import "functions";
+
+md-select {
+    background: white;
+    border: 1px solid $grey-4;
+    height: span(1/2);
+
+    .mat-select-value-text {
+        font-family: $font-family-Renault;
+        font-size: rem(1.3);
+        font-weight: bold;
+        padding: 0 10px;
+    }
+
+    .mat-select-underline {
+        display: none;
+    }
+
+    .mat-select-arrow {
+        &:after {
+            background: white;
+            content: '\e313';
+            color: $grey-4;
+            font-family: "Material Icons";
+            position: relative;
+            top: -15px;
+            right: 18px;
+            font-size: rem(2.4);
+        }
+    }
+
+    &.with-label {
+        margin-top: 5px;
+
+    }
+
+    &.with-label.inside-form {
+        margin-top: 5px;
+        height: 31px; // 3& to match inputs' height
+    }
+}
+
+md-option {
+    font-family: $font-family-Renault !important;
+    font-size: rem(1.3) !important;
+    color: $grey-1 !important;
+
+    &.mat-selected {
+        font-weight: bold !important;
+        background: $primary !important;
+        color: black !important;
+    }
+}
+
+.mat-select-panel {
+    position: relative;
+    left: 15px;
+}

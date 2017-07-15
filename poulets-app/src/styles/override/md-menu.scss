@@ -1,0 +1,32 @@
+@import "functions";
+@import "palette";
+
+.mat-menu-content {
+    padding:0 !important;
+}
+
+[md-menu-item] {
+    background: white !important;
+    color: black;
+    font-size: rem(1.4) !important;
+    padding: 0 10px !important;
+
+    &:hover {
+        background: $primary !important;
+        color: black !important;
+    }
+
+    // fix for IE11 (text-align: start not recognized)
+    &.mat-menu-item {
+        text-align: left;
+    }
+}
+
+.period-picker-menu {
+    &.mat-menu-panel {
+        min-width: span(5);
+        top: -5.5px;
+        left: 2.5px;
+        position: relative;
+    }
+}

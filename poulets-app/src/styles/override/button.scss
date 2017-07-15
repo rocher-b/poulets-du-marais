@@ -1,0 +1,142 @@
+@import "palette";
+@import "functions";
+
+button, a.button {
+    @include text-ellipsis;
+    border-radius: 0 !important;
+    line-height: 40px !important;
+    box-shadow: none !important;
+    padding: 0 5px !important;
+
+    span {
+        font-family: $font-family-Renault !important;
+        font-weight: normal !important;
+    }
+
+    .mat-button-wrapper {
+        font-weight: bold;
+    }
+
+    &.tool-button {
+        line-height: 28px !important;
+        height: 30px !important;
+
+        md-icon {
+            font-size: rem(1.8);
+            height: rem(1.8);
+            width: rem(1.8);
+        }
+    }
+
+    &.flex-wrapper .mat-button-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &[md-raised-button].mat-primary {
+        &.hover {
+            background: white;
+            border: 1px solid $grey-4;
+            &:hover {
+                background: $primary;
+                border-color: $primary;
+            }
+
+            &.tool-button {
+                line-height: 24px !important;
+            }
+        }
+
+        &.success {
+            border: 0;
+            background: $success;
+        }
+
+        &.grey {
+            border: 0;
+            background: $grey-4;
+        }
+
+        &.black {
+            border: #595959;
+            background: $grey-1;
+            color: white;
+
+            span {
+                color: white;
+            }
+
+            &:hover {
+                .mat-button-focus-overlay {
+                    background: none !important;
+                }
+                background: black !important;
+            }
+        }
+    }
+
+    &[color=grey]:not([md-raised-button]) {
+        border: 2px solid $grey-4;
+        line-height: 36px !important;
+        &:hover {
+            background: $grey-4;
+            .mat-button-focus-overlay {
+                background: transparent;
+            }
+        }
+    }
+
+    &[disabled]:hover.mat-primary {
+        background: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    @include host-context(md-card-actions) {
+        box-shadow: none !important;
+        font-weight: bold;
+        border-radius: 0;
+        border: 0 !important;
+
+        .mat-button-wrapper {
+            font-size: rem(1.7);
+            letter-spacing: 1px;
+        }
+    }
+
+    @include host-context('md-card-actions.dual-buttons') {
+        width: 50%;
+        margin: 0 !important;
+
+        &:first-child {
+            border-right: solid $grey-4 1px !important;
+        }
+    }
+
+    @include host-context(md-card) {
+        text-transform: uppercase;
+    }
+
+    @include host-context(md-card-actions rd-file-upload) {
+        margin: 0 !important;
+        border-radius: 0 !important;
+
+        &[disabled] {
+            background: $grey-4 !important;
+        }
+    }
+
+    .text-ellipsis {
+        @include text-ellipsis;
+    }
+
+    @include host-context(rd-file-upload) {
+        height: 100%; // do not use layout-fill-height, it messes up with the component height computation
+        width: 100%;
+    }
+
+    &.no-ripple {
+        .mat-button-ripple {
+            display: none !important;
+        }
+    }
+
+}

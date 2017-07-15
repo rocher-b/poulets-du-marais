@@ -1,0 +1,104 @@
+@import "functions";
+@import "palette";
+
+:host {
+    background: $grey-1;
+    color: white;
+    position: fixed;
+    height: 100%;
+    transition: width .7s ease-in-out;
+    overflow: hidden;
+    box-shadow: inset -26px 26px 17px -24px rgba(0,0,0,.71);
+
+    &.closed {
+        width: 0 !important;
+    }
+
+    .entry {
+        cursor: pointer;
+        color: white;
+        height: 52px;
+        line-height: rem(5.2);
+        font-size: rem(1.4);
+        padding-left: 21px;
+        font-family: $font-family-Renault;
+        border-bottom: 1px solid rgba(102, 102, 102, 0.4);
+        text-transform: uppercase;
+
+        &.active-link, &:hover, &.custom-active-link {
+            &:before {
+                content: '\00a0';
+                background: $primary;
+                width: 6px;
+                margin-right: 15px;
+                height: 52px;
+                position: absolute;
+                left: 0;
+            }
+        }
+
+        md-icon {
+            margin-right: 10px;
+        }
+    }
+
+    .submenu {
+        background: $grey-2;
+        max-height: 0;
+        transition: max-height .35s ease-in-out;
+        overflow: hidden;
+
+        &.opened {
+            max-height: 72px; // TODO to be adapted when we will have more than 2 entries
+        }
+
+        .subentry {
+            font-family: $font-family-Renault;
+            padding: 5px 0 5px 20px;
+            cursor: pointer;
+            color: white;
+            line-height: rem(2);
+            font-size: rem(1.2);
+
+            &:first-child {
+                padding-top: 10px;
+            }
+
+            &:last-child {
+                padding-bottom: 10px;
+            }
+
+            &.active-link, &:hover, &.custom-active-link {
+                color: $primary;
+                font-weight: bold;
+
+                &:before {
+                    content: '\25CF';
+                    color: $primary;
+                }
+            }
+
+            &:hover:not(.active-link):not(.custom-active-link) {
+                color: white;
+                font-weight: normal;
+
+                &:before {
+                    color: white;
+                }
+            }
+
+            &:before {
+                content: '\25CB';
+                font-size: rem(1.6);
+                position: relative;
+                bottom: -1px;
+                padding-right: 10px;
+            }
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+}
+

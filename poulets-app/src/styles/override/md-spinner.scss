@@ -1,0 +1,18 @@
+@import "functions";
+@import "palette";
+
+md-spinner {
+    @include host-context(app-task-timeline) {
+        height: 27px !important;
+        width: 23px !important;
+        position: relative;
+        top: -3px;
+        left: -1px;
+
+        svg {
+            path {
+                stroke-width:15px !important;
+            }
+        }
+    }
+}

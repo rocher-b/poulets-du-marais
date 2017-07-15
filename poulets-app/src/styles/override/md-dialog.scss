@@ -1,0 +1,41 @@
+@import "functions";
+@import "palette";
+
+md-dialog-container {
+    padding: 0 0 60px 0 !important;
+
+    [md-dialog-title] {
+        font-weight: bold;
+        font-size: rem(1.8) !important;
+        color: white;
+        background: $grey-1;
+        height: span(1);
+        font-family: $font-family-Renault;
+        text-transform: uppercase;
+        display: flex;
+        padding: 0 10px 0 20px;
+        margin: 0;
+
+        button {
+            box-shadow: none;
+            md-icon {
+                font-size: rem(3);
+                width: rem(3);
+                height: rem(3);
+            }
+        }
+    }
+
+    .mat-dialog-content {
+        font-size: rem(1.4);
+        line-height: rem(1.9);
+        text-align: left;
+        padding: 28px;
+        margin: 0 !important;
+    }
+
+    .mat-dialog-actions {
+        margin-bottom: 20px;
+        padding: 0;
+    }
+}
