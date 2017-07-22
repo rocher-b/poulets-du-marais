@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerComponent } from './component/customer.component';
-import {CUSTOMER_ROUTES} from "./route/customer.route";
+import { HttpClientModule } from '@angular/common/http';
+import { CustomerService } from './service/customer.service';
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(CUSTOMER_ROUTES),
+        HttpClientModule,
         SharedModule,
     ],
     declarations: [
@@ -21,7 +21,9 @@ export class CustomerModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: CustomerRootModule,
-            providers: []
+            providers: [
+                CustomerService
+            ]
         };
     }
 }

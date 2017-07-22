@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { DATA_ROUTES } from './data/route/data.route';
+import { DataComponent } from './data/component/data.component';
 
 export const APP_ROUTES: Routes = [
     {
@@ -8,7 +10,8 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: 'data',
-        redirectTo: '/data',
+        component: DataComponent,
+        children: DATA_ROUTES,
     }
 
 ];

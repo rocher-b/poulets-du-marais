@@ -12,20 +12,15 @@
        layout-fill-width>
         Données
     </a>
-    <div [class.opened]="groupOpened"
+    <div [class.opened]="true"
          class="submenu">
         <div class="subentry"
-             [routerLink]="['/assignment']"
+             [routerLink]="['/customer']"
              routerLinkActive="active-link"
              layout-fill-width>
-            {{ 'MENU.AFFECTATION' }}
+            Clients
         </div>
-        <div class="subentry"
-             [routerLink]="['/axis-mapping']"
-             routerLinkActive="active-link"
-             layout-fill-width>
-            {{ 'MENU.CORRESPONDANCE' }}
-        </div>
+
     </div>
 
 </div>

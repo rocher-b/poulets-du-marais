@@ -1,0 +1,12 @@
+<div layout-padding></div>
+<div class="table">
+    <ngx-datatable
+            class="material"
+            [rows]="rows$ | async"
+            [columns]="columns"
+            columnMode="force"
+            [footerHeight]="30"
+            [rowHeight]="'auto'"
+            [limit]="15">
+    </ngx-datatable>
+</div>

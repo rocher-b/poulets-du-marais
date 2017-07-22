@@ -5,6 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './component/menu/menu.component';
 import { CustomMaterialModule } from './custom-material.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /**
  * Module containing everything that needs to be shared accross the app (e.g. confirmation dialog).
@@ -12,18 +13,20 @@ import { CustomMaterialModule } from './custom-material.module';
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NoopAnimationsModule,
         CustomMaterialModule,
+        FormsModule,
+        NgxDatatableModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
         RouterModule,
     ],
     exports: [
-        FormsModule,
-        ReactiveFormsModule,
         CustomMaterialModule,
+        NgxDatatableModule,
         NoopAnimationsModule,
         MenuComponent,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     entryComponents: [],
     declarations: [
