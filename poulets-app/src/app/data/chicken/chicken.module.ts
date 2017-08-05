@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { SharedModule } from '../shared/shared.module';
-import { CustomerComponent } from './component/customer.component';
+import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomerService } from './service/customer.service';
+import { ChickenService } from './service/chicken.service';
+import { ChickenComponent } from './component/chicken.component';
 
 @NgModule({
     imports: [
@@ -13,16 +13,16 @@ import { CustomerService } from './service/customer.service';
         SharedModule,
     ],
     declarations: [
-        CustomerComponent
+        ChickenComponent
     ],
     exports: []
 })
-export class CustomerModule {
+export class ChickenModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: CustomerRootModule,
+            ngModule: ChickenRootModule,
             providers: [
-                CustomerService
+                ChickenService
             ]
         };
     }
@@ -30,10 +30,10 @@ export class CustomerModule {
 
 @NgModule({
     imports: [
-        CustomerModule
+        ChickenModule
     ],
-    exports: [CustomerModule]
+    exports: [ChickenModule]
 })
-export class CustomerRootModule {
+export class ChickenRootModule {
 }
 

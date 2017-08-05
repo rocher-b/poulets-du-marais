@@ -49,7 +49,7 @@
         overflow: hidden;
 
         &.opened {
-            max-height: 72px; // TODO to be adapted when we will have more than 2 entries
+            max-height: 104px; // TODO to be adapted when we will have more than 2 entries (1 = 32px)
         }
 
         .subentry {

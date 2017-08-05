@@ -7,20 +7,29 @@
     </a>
 
     <a class="entry"
-       [routerLink]="['/data']"
-       routerLinkActive="active-link"
        layout-fill-width>
         Données
     </a>
     <div [class.opened]="true"
          class="submenu">
         <div class="subentry"
-             [routerLink]="['/customer']"
+             [routerLink]="['data', 'customer']"
              routerLinkActive="active-link"
              layout-fill-width>
             Clients
         </div>
-
+        <div class="subentry"
+             [routerLink]="['data', 'chicken']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Poulets
+        </div>
+        <div class="subentry"
+             [routerLink]="['data', 'laying-hen']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Poules pondeuses
+        </div>
     </div>
 
 </div>

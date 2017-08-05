@@ -3,7 +3,6 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { DataComponent } from './component/data.component';
 import { DATA_ROUTES } from './route/data.route';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { DATA_ROUTES } from './route/data.route';
         SharedModule,
     ],
     declarations: [
-        DataComponent
     ],
     exports: []
 })

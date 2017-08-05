@@ -7,15 +7,19 @@ import { RouterModule } from "@angular/router";
 import { HomeModule } from "./home/home.module";
 import { SharedModule } from './shared/shared.module';
 import { DataModule } from './data/data.module';
-import { CustomerModule } from './customer/customer.module';
+import { CustomerModule } from './data/customer/customer.module';
+import { ChickenModule } from './data/chicken/chicken.module';
+import { LayingHenModule } from './data/laying-hen/laying-hen.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+      ChickenModule.forRoot(),
       CustomerModule.forRoot(),
       DataModule.forRoot(),
       HomeModule.forRoot(),
+      LayingHenModule.forRoot(),
       RouterModule.forRoot(APP_ROUTES, {enableTracing: false}),
       SharedModule,
   ],
