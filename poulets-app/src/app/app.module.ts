@@ -10,6 +10,7 @@ import { DataModule } from './data/data.module';
 import { CustomerModule } from './data/customer/customer.module';
 import { ChickenModule } from './data/chicken/chicken.module';
 import { LayingHenModule } from './data/laying-hen/laying-hen.module';
+import { HenhouseModule } from './data/henhouse/henhouse.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { LayingHenModule } from './data/laying-hen/laying-hen.module';
       ChickenModule.forRoot(),
       CustomerModule.forRoot(),
       DataModule.forRoot(),
+      HenhouseModule.forRoot(),
       HomeModule.forRoot(),
       LayingHenModule.forRoot(),
       RouterModule.forRoot(APP_ROUTES, {enableTracing: false}),

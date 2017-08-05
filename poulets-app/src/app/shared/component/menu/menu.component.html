@@ -13,10 +13,16 @@
     <div [class.opened]="true"
          class="submenu">
         <div class="subentry"
-             [routerLink]="['data', 'customer']"
+             [routerLink]="['data', 'customers']"
              routerLinkActive="active-link"
              layout-fill-width>
             Clients
+        </div>
+        <div class="subentry"
+             [routerLink]="['data', 'henhouses']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Poulaillers
         </div>
         <div class="subentry"
              [routerLink]="['data', 'chicken']"
@@ -25,7 +31,7 @@
             Poulets
         </div>
         <div class="subentry"
-             [routerLink]="['data', 'laying-hen']"
+             [routerLink]="['data', 'laying-hens']"
              routerLinkActive="active-link"
              layout-fill-width>
             Poules pondeuses
