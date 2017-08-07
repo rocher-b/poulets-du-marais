@@ -1,0 +1,27 @@
+{
+  "name": "henhouse",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "cleaningDate": {
+      "type": "date"
+    },
+    "food": {
+      "type": {
+        "date": "date",
+        "quantity": "string"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,56 @@
+{
+  "name": "laying-hen",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "batch": {
+      "type": "string",
+      "default": "1"
+    },
+    "age": {
+      "type": "string"
+    },
+    "actualQuantity": {
+      "type": "string"
+    },
+    "loss": {
+      "type": "string"
+    },
+    "arrivingDate": {
+      "type": "date"
+    },
+    "currentHenhouseId": {
+      "type": "string",
+      "required": true
+    },
+    "sold": {
+      "type": "string"
+    },
+    "cost": {
+      "type": {
+          "purchasingPriceUP": "string",
+          "foodUP": "string",
+          "totalUP": "string"
+      }
+    },
+    "clutch": {
+      "type": {
+          "date": "date",
+          "quantity": "string"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "henhouse": {
+      "type": "belongsTo",
+      "model": "henhouse",
+      "foreignKey": "currentHenhouseId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
