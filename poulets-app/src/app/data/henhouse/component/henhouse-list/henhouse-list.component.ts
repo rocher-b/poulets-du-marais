@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { HenhouseService } from '../service/henhouse.service';
+import { HenhouseService } from '../../service/henhouse.service';
 
 @Component({
     selector: 'app-henhouse-list',
@@ -11,6 +11,7 @@ import { HenhouseService } from '../service/henhouse.service';
 })
 export class HenhouseListComponent {
 
+    henhouses: any[];
 
     constructor(protected http: HttpClient,
                 private henhouseService: HenhouseService) {
@@ -18,7 +19,7 @@ export class HenhouseListComponent {
     }
 
     ngOnInit() {
-
+        this.henhouses = this.henhouseService.getHenhousesList();
     }
 
 }

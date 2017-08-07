@@ -5,6 +5,7 @@ import { CustomerService } from '../service/customer.service';
 import { MdDialog } from "@angular/material";
 import { EditDialogComponent } from '../../../shared/component/edit-dialog/edit-dialog.component';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
+import 'rxjs/Rx';
 
 
 @Component({
@@ -38,9 +39,9 @@ export class CustomerComponent {
     }
 
     ngOnInit() {
-        this.rows = this.customerService.getCustomers().map(customer => {
+        this.rows$ = this.customerService.getCustomers().map(customers => customers.map(customer => {
             return buildRowWithEdit(customer);
-        });
+        }));
     }
 
     openDialog(event, value) {

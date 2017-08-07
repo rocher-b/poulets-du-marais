@@ -38,5 +38,9 @@
   "customer": {
     "dataSource": "pouletsDuMaraisDs",
     "public": true
+  },
+  "henhouse": {
+    "dataSource": "pouletsDuMaraisDs",
+    "public": true
   }
 }

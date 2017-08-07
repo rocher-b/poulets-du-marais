@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { HenhouseService } from '../service/henhouse.service';
+import { HenhouseService } from '../../service/henhouse.service';
 import { MdDialog } from "@angular/material";
-import { EditDialogComponent } from '../../../shared/component/edit-dialog/edit-dialog.component';
-import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
+import { EditDialogComponent } from '../../../../shared/component/edit-dialog/edit-dialog.component';
+import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../../shared/component/helper/array-builder';
 
 
 @Component({

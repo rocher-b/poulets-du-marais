@@ -2,7 +2,7 @@
 <div class="table">
     <ngx-datatable
             class="material"
-            [rows]="rows"
+            [rows]="rows$ | async"
             [columns]="columns"
             columnMode="force"
             [footerHeight]="30"
@@ -20,7 +20,7 @@
                     <md-icon>mode_edit</md-icon>
                 </div>
 
-                <span *ngIf="!value.editButton">{{value}}</span>
+                <span *ngIf="!value.editButton">{{value && value || '-'}}</span>
 
             </ng-template>
         </ngx-datatable-column>

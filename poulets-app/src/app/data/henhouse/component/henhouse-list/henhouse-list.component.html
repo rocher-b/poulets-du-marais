@@ -1,0 +1,20 @@
+<div *ngFor="let henhouse of henhouses" layout="row">
+    <md-card span="5">
+        <md-card-header layout="row">
+            <md-card-title layout="row" layout-align="start center">
+                {{ henhouse.name }}
+            </md-card-title>
+        </md-card-header>
+
+        <md-card-actions layout="row" layout-align="start center">
+            <button md-button
+                    color="primary"
+                    class="hover"
+                    layout-fill
+                    [routerLink]="['..', henhouses.id]"
+                    routerLinkActive="active-link">
+                Voir le détail
+            </button>
+        </md-card-actions>
+    </md-card>
+</div>
