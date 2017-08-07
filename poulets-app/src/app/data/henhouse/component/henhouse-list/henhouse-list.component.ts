@@ -11,7 +11,7 @@ import { HenhouseService } from '../../service/henhouse.service';
 })
 export class HenhouseListComponent {
 
-    henhouses: any[];
+    henhouses$: Observable<any[]>;
 
     constructor(protected http: HttpClient,
                 private henhouseService: HenhouseService) {
@@ -19,7 +19,7 @@ export class HenhouseListComponent {
     }
 
     ngOnInit() {
-        this.henhouses = this.henhouseService.getHenhousesList();
+        this.henhouses$ = this.henhouseService.getHenhousesList();
     }
 
 }
