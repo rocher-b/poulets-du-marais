@@ -37,10 +37,10 @@
       }
     },
     "clutch": {
-      "type": {
+      "type": [{
           "date": "date",
           "quantity": "string"
-      }
+      }]
     }
   },
   "validations": [],

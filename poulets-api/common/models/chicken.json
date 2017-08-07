@@ -44,10 +44,10 @@
       }
     },
     "culling": {
-      "type": {
+      "type": [{
         "date": "date",
         "quantity": "string"
-      }
+      }]
     }
   },
   "validations": [],
