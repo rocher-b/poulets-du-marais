@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { MenuComponent } from './component/menu/menu.component';
 import { CustomMaterialModule } from './custom-material.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
 
 /**
  * Module containing everything that needs to be shared accross the app (e.g. confirmation dialog).
@@ -23,18 +22,13 @@ import { EditDialogComponent } from './component/edit-dialog/edit-dialog.compone
     ],
     exports: [
         CustomMaterialModule,
-        EditDialogComponent,
         NgxDatatableModule,
         NoopAnimationsModule,
         MenuComponent,
         FormsModule,
         ReactiveFormsModule,
     ],
-    entryComponents: [
-        EditDialogComponent,
-    ],
     declarations: [
-        EditDialogComponent,
         MenuComponent,
     ],
     providers: []

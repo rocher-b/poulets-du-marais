@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { APP_CONSTANTS } from '../../../shared/app.constants';
 
 const CHICKENS = "/Chickens";
 
@@ -10,16 +11,9 @@ export class ChickenService {
     constructor(protected http: HttpClient) {
     }
 
-    getChickens(): any[] {
-        return ([
-                {
-                    batch: '14',
-                    age: '84',
-                    number: '48',
-                    loss: '1',
-                    arrivingDate: '13 Avril 2017',
-                    cullingDate: '20 Avril 2017'
-                }]
-        );
+    getChickens(filterId?: string): Observable<any[]> {
+        return this.http.get(filterId
+            ? APP_CONSTANTS.API_PATH + "/chickens?filter[where][henhouseId][like]=" + filterId
+            : APP_CONSTANTS.API_PATH + CHICKENS);
     }
 }

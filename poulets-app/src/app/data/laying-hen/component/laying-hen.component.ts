@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { LayingHenService } from '../service/laying-hen.service';
 import { MdDialog } from "@angular/material";
-import { EditDialogComponent } from '../../../shared/component/edit-dialog/edit-dialog.component';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
 
 
@@ -41,9 +40,4 @@ export class LayingHenComponent {
             return buildRowWithEdit(chickens);
         });
     }
-
-    openDialog(event, value) {
-        this.dialog.open(EditDialogComponent, value);
-    }
-
 }

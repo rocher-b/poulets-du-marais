@@ -31,16 +31,18 @@
     },
     "cost": {
       "type": {
-          "purchasingPriceUP": "string",
-          "foodUP": "string",
-          "totalUP": "string"
+        "purchasingPriceUP": "string",
+        "foodUP": "string",
+        "totalUP": "string"
       }
     },
     "clutch": {
-      "type": {
+      "type": [
+        {
           "date": "date",
           "quantity": "string"
-      }
+        }
+      ]
     }
   },
   "validations": [],

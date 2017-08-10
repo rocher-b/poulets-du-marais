@@ -1,10 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { HenhouseService } from '../../service/henhouse.service';
-import { MdDialog } from "@angular/material";
-import { EditDialogComponent } from '../../../../shared/component/edit-dialog/edit-dialog.component';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../../shared/component/helper/array-builder';
+import { HenhouseService } from '../../service/henhouse.service';
+import { ChickenService } from '../../../chicken/service/chicken.service';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -19,24 +19,21 @@ export class HenhouseDetailComponent {
 
     rows$: Observable<any[]>;
 
-    rows: any[];
-
     constructor(protected http: HttpClient,
-                private henhouseService: HenhouseService,
-                public dialog: MdDialog) {
+                private chickenService: ChickenService,
+                private route: ActivatedRoute) {
 
         this.columns = [
-            buildColumn("Type", 'type'),
-            buildColumnWithEdit("Editer",  'edit')
+            buildColumn("Lot", 'batch'),
+            buildColumnWithEdit("Editer", 'edit')
         ];
     }
 
     ngOnInit() {
-
-    }
-
-    openDialog(event, value) {
-        this.dialog.open(EditDialogComponent, value);
+        console.log("route: ", this.route.snapshot.params.id);
+    this.rows$ = this.chickenService.getChickens(this.route.snapshot.params.id).map(chickens => chickens.map(chicken => {
+            return buildRowWithEdit(chicken);
+        }));
     }
 
 }

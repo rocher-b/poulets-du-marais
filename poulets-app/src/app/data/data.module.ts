@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
@@ -9,10 +9,9 @@ import { DATA_ROUTES } from './route/data.route';
     imports: [
         CommonModule,
         RouterModule.forRoot(DATA_ROUTES),
-        SharedModule,
+        SharedModule
     ],
-    declarations: [
-    ],
+    declarations: [],
     exports: []
 })
 export class DataModule {

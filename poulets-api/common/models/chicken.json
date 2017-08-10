@@ -31,9 +31,8 @@
     "remaining": {
       "type": "string"
     },
-    "currentHenhouseId": {
-      "type": "string",
-      "required": true
+    "henhouseId": {
+      "type": "string"
     },
     "cost": {
       "type": {
@@ -44,20 +43,16 @@
       }
     },
     "culling": {
-      "type": {
-        "date": "date",
-        "quantity": "string"
-      }
+      "type": [
+        {
+          "date": "date",
+          "quantity": "string"
+        }
+      ]
     }
   },
   "validations": [],
-  "relations": {
-    "henhouse": {
-      "type": "belongsTo",
-      "model": "henhouse",
-      "foreignKey": "currentHenhouseId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

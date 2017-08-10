@@ -6,6 +6,7 @@ md-input-container {
 
     .mat-input-wrapper {
         padding: 0 !important;
+        margin-top: 0 !important;
 
         input {
             background: white;
@@ -40,10 +41,15 @@ md-input-container {
 
         .mat-input-underline {
             margin-top: 0;
+            bottom: 4px;
 
             &.mat-disabled {
                 display: none;
             }
+        }
+
+        .mat-input-infix {
+            border-top:0;
         }
 
         @include host-context(app-custom-datatable) {
