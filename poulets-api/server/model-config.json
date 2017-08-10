@@ -42,5 +42,13 @@
   "henhouse": {
     "dataSource": "pouletsDuMaraisDs",
     "public": true
+  },
+  "chicken": {
+    "dataSource": "pouletsDuMaraisDs",
+    "public": true
+  },
+  "laying-hen": {
+    "dataSource": "pouletsDuMaraisDs",
+    "public": true
   }
 }

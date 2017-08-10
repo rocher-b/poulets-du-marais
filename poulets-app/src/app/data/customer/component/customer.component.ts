@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { CustomerService } from '../service/customer.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MdDialog } from "@angular/material";
-import { EditDialogComponent } from '../../../shared/component/edit-dialog/edit-dialog.component';
-import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
+import { CustomerService } from '../service/customer.service';
 
 
 @Component({
@@ -23,8 +22,7 @@ export class CustomerComponent {
     rows: any[];
 
     constructor(protected http: HttpClient,
-                private customerService: CustomerService,
-                public dialog: MdDialog) {
+                private customerService: CustomerService) {
 
         this.columns = [
             buildColumn("Prénom", 'firstname'),
@@ -32,7 +30,7 @@ export class CustomerComponent {
             buildColumn("Adresse", 'address'),
             buildColumn("Téléphone", 'tel'),
             buildColumn("Email", 'email'),
-            buildColumn("Abats", 'giblets'),
+            buildColumn("Abats", 'abats'),
             buildColumn("Type", 'type'),
             buildColumnWithEdit("Editer",  'edit')
         ];
@@ -40,12 +38,15 @@ export class CustomerComponent {
 
     ngOnInit() {
         this.rows$ = this.customerService.getCustomers().map(customers => customers.map(customer => {
-            return buildRowWithEdit(customer);
+            return buildRowWithEdit(customer, customer.id);
         }));
     }
 
-    openDialog(event, value) {
-        this.dialog.open(EditDialogComponent, value);
+    setValue(value: any) {
+        if (typeof value === 'boolean')
+            return value === true ? 'oui' : 'non';
+        else {
+            return value ? value : '-';
+        }
     }
-
 }

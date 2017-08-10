@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { CustomerComponent } from '../customer/component/customer.component';
 import { ChickenComponent } from '../chicken/component/chicken.component';
 import { LayingHenComponent } from '../laying-hen/component/laying-hen.component';
 import { HENHOUSE_ROUTES } from '../henhouse/route/henhouse.route';
+import { CUSTOMER_ROUTES } from '../customer/customer.route';
 
 export const DATA_ROUTES: Routes = [
     {
@@ -11,7 +11,7 @@ export const DATA_ROUTES: Routes = [
     },
     {
         path: 'customers',
-        component: CustomerComponent
+        children: CUSTOMER_ROUTES
     },
     {
         path: 'laying-hens',

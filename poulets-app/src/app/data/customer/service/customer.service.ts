@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { APP_CONSTANTS } from '../../../shared/app.constants';
 
 const CUSTOMERS = "/Customers";
-const CUSTOMER = "/Customer";
 
 @Injectable()
 export class CustomerService {
@@ -14,5 +13,9 @@ export class CustomerService {
 
     getCustomers(): Observable<any[]> {
         return this.http.get(APP_CONSTANTS.API_PATH + CUSTOMERS);
+    }
+
+    getCustomerDetails(id: string): any {
+        return this.http.get(APP_CONSTANTS.API_PATH + CUSTOMERS + "/" + id);
     }
 }

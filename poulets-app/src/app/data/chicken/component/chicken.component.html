@@ -16,7 +16,7 @@
                               [maxWidth]="column.maxWidth"
                               *ngFor="let column of columns">
             <ng-template let-value="value" ngx-datatable-cell-template>
-                <div *ngIf="value.editButton" class="edit-button" (click)="openDialog($event, value)">
+                <div *ngIf="value.editButton" class="edit-button cursor" (click)="openDialog($event, value)">
                     <md-icon>mode_edit</md-icon>
                 </div>
 

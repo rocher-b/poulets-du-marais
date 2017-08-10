@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCardModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdMenuModule, MdOptionModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule, MdSidenavModule, MdSnackBarModule, MdTabsModule, MdToolbarModule, MdTooltipModule, OverlayModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdCardModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdMenuModule, MdOptionModule, MdProgressBarModule, MdProgressSpinnerModule, MdSelectModule, MdSidenavModule, MdSnackBarModule, MdTabsModule, MdToolbarModule, MdTooltipModule, OverlayModule } from '@angular/material';
 
 /**
  * Module containing all the used Material components
@@ -10,6 +10,7 @@ import { MdButtonModule, MdCardModule, MdChipsModule, MdDialogModule, MdIconModu
 const MATERIAL_MODULES = [
     MdButtonModule,
     MdCardModule,
+    MdCheckboxModule,
     MdChipsModule,
     MdDialogModule,
     MdIconModule,

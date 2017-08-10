@@ -1,8 +1,8 @@
-<div *ngFor="let henhouse of henhouses" layout="row">
+<div *ngFor="let henhouse of (henhouses$ | async)" layout="row">
     <md-card span="5">
         <md-card-header layout="row">
             <md-card-title layout="row" layout-align="start center">
-                {{ henhouse.name }}
+                Poulailler {{ henhouse.number !== '0' && henhouse.number || 'Pondeuses' }}
             </md-card-title>
         </md-card-header>
 
@@ -11,8 +11,7 @@
                     color="primary"
                     class="hover"
                     layout-fill
-                    [routerLink]="['..', henhouses.id]"
-                    routerLinkActive="active-link">
+                    [routerLink]="['..', henhouse.id]">
                 Voir le détail
             </button>
         </md-card-actions>
