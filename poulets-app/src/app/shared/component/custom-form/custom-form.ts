@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
 
 
@@ -17,7 +18,9 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     subscriptions = new Subscription();
 
     constructor(private cd: ChangeDetectorRef,
-                private location: Location) {
+                private location: Location,
+                private route: Router) {
+        console.log("route: ", this.route.url);
     }
 
     ngOnInit() {
@@ -36,6 +39,9 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     onSubmit() {
 
         if (this.beforeSubmit()) {
+            if (this.route.url.indexOf("edit") > -1) {
+
+            }
             this.previousPage();
         }
     }

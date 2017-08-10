@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CustomForm } from '../../../../shared/component/custom-form/custom-form';
 import { CustomerService } from '../../service/customer.service';
 
@@ -17,11 +17,11 @@ export class CustomerFormComponent extends CustomForm implements OnInit {
                 location: Location,
                 private fb: FormBuilder,
                 private customerService: CustomerService,
-                private route: ActivatedRoute) {
-        super(cd, location);
+                private activatedRoute: ActivatedRoute, route: Router) {
+        super(cd, location, route);
 
-        if (this.route.snapshot.params.id) {
-            this.customerService.getCustomerDetails(this.route.snapshot.params.id).take(1).subscribe(customer => {
+        if (this.activatedRoute.snapshot.params.id) {
+            this.customerService.getCustomerDetails(this.activatedRoute.snapshot.params.id).take(1).subscribe(customer => {
                 this.updateForm(customer);
             });
         }

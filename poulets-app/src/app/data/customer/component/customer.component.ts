@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MdDialog } from "@angular/material";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
@@ -31,7 +30,7 @@ export class CustomerComponent {
             buildColumn("Téléphone", 'tel'),
             buildColumn("Email", 'email'),
             buildColumn("Abats", 'abats'),
-            buildColumn("Type", 'type'),
+            //buildColumn("Type", 'type'),
             buildColumnWithEdit("Editer",  'edit')
         ];
     }
