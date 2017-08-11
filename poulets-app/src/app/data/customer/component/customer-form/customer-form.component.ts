@@ -13,15 +13,16 @@ import { CustomerService } from '../../service/customer.service';
 })
 export class CustomerFormComponent extends CustomForm implements OnInit {
 
-    constructor( cd: ChangeDetectorRef,
+    constructor(cd: ChangeDetectorRef,
                 location: Location,
+                router: Router,
+                activatedRoute: ActivatedRoute,
                 private fb: FormBuilder,
-                private customerService: CustomerService,
-                private activatedRoute: ActivatedRoute, route: Router) {
-        super(cd, location, route);
+                private customerService: CustomerService) {
+        super(location, cd, customerService, router, activatedRoute);
 
         if (this.activatedRoute.snapshot.params.id) {
-            this.customerService.getCustomerDetails(this.activatedRoute.snapshot.params.id).take(1).subscribe(customer => {
+            this.customerService.getDetails(this.activatedRoute.snapshot.params.id).take(1).subscribe(customer => {
                 this.updateForm(customer);
             });
         }
@@ -29,7 +30,7 @@ export class CustomerFormComponent extends CustomForm implements OnInit {
     }
 
     updateForm(obj: any) {
-          this.form.patchValue(obj);
+        this.form.patchValue(obj);
     }
 
     ngOnInit() {

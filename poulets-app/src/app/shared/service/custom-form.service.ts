@@ -1,15 +1,31 @@
-import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { APP_CONSTANTS } from '../app.constants';
 
 @Injectable()
-export class CustomFormService {
+export abstract class CustomFormService {
 
-    constructor(protected http: HttpClient) {
+    PATH: string;
+
+    constructor(protected http: HttpClient,
+                protected entityPath: string) {
+        this.PATH = APP_CONSTANTS.API_PATH + entityPath;
     }
 
-    editData(id:string) {
-        return this.http.get(APP_CONSTANTS.API_PATH + CUSTOMERS + "/" + id);
+    create(entity: any): any {
+        return this.http.post(this.PATH, entity);
+    }
+
+    update(id: string, entity: any): any {
+        return this.http.put(this.PATH + "/" + id, entity);
+    }
+
+    getList(): any {
+        return this.http.get(this.PATH);
+    }
+
+    getDetails(id: string): any {
+        return this.http.get(this.PATH + "/" + id);
 
     }
 

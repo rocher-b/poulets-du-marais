@@ -1,5 +1,10 @@
 <div layout-padding></div>
+
 <div class="table">
+    <button md-button color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
+
+    <div layout-padding></div>
+
     <ngx-datatable
             class="material"
             [rows]="rows$ | async"
@@ -7,7 +12,7 @@
             columnMode="force"
             [footerHeight]="30"
             [rowHeight]="'auto'"
-            [limit]="15">
+            [limit]="10">
         <ngx-datatable-column [name]="column.name"
                               [draggable]="false"
                               [resizeable]="false"
@@ -16,8 +21,14 @@
                               [maxWidth]="column.maxWidth"
                               *ngFor="let column of columns">
             <ng-template let-value="value" ngx-datatable-cell-template>
-                <div *ngIf="value.editButton" class="edit-button cursor" [routerLink]="['..', value.userId, 'edit']">
-                    <md-icon>mode_edit</md-icon>
+                <div *ngIf="value.editButton && value.deleteButton" layout="row">
+                    <div class="edit-button cursor">
+                        <md-icon [routerLink]="['..', value.entityId, 'edit']">mode_edit</md-icon>
+                    </div>
+                    <div layout-very-small-padding></div>
+                    <div class="edit-button cursor">
+                        <md-icon (click)="openDeletionDialog(value.entityId)">delete</md-icon>
+                    </div>
                 </div>
 
                 <span *ngIf="!value.editButton"> {{setValue(value)}} </span>

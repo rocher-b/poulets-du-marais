@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DeletionDialogComponent } from './component/deletion-dialog/deletion-dialog.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { CustomMaterialModule } from './custom-material.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /**
  * Module containing everything that needs to be shared accross the app (e.g. confirmation dialog).
@@ -18,7 +19,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         NgxDatatableModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
-        RouterModule,
+        RouterModule
     ],
     exports: [
         CustomMaterialModule,
@@ -26,10 +27,14 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         NoopAnimationsModule,
         MenuComponent,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
+    ],
+    entryComponents: [
+        DeletionDialogComponent
     ],
     declarations: [
-        MenuComponent,
+        DeletionDialogComponent,
+        MenuComponent
     ],
     providers: []
 })

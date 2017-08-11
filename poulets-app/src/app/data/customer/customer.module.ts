@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { CustomerComponent } from './component/customer.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './service/customer.service';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
-import { CUSTOMER_ROUTES } from './customer.route';
+import { CUSTOMER_ROUTES } from './route/customer.route';
 import { RouterModule } from "@angular/router";
 
 @NgModule({
@@ -17,7 +17,7 @@ import { RouterModule } from "@angular/router";
         SharedModule
     ],
     declarations: [
-        CustomerComponent,
+        CustomerListComponent,
         CustomerFormComponent
     ],
     schemas: [NO_ERRORS_SCHEMA],

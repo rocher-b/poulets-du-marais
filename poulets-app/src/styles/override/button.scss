@@ -7,6 +7,7 @@ button, a.button {
     line-height: 40px !important;
     box-shadow: none !important;
     padding: 0 5px !important;
+    outline: none !important;
 
     span {
         font-family: $font-family-Renault !important;
@@ -20,12 +21,24 @@ button, a.button {
     &.tool-button {
         line-height: 28px !important;
         height: 30px !important;
+        font-size: rem(1.4);
 
         md-icon {
             font-size: rem(1.8);
             height: rem(1.8);
             width: rem(1.8);
         }
+    }
+
+    &.tool-button-datatable {
+        line-height: 28px !important;
+        height: 30px !important;
+        margin-top: 5px;
+    }
+
+    &.no-background {
+        background: none !important;
+        color: black;
     }
 
     &.flex-wrapper .mat-button-wrapper {
@@ -90,6 +103,10 @@ button, a.button {
         background: rgba(0, 0, 0, 0.12) !important;
     }
 
+    &:not([disabled]).mat-mini-fab.mat-accent md-icon {
+        color: black;
+    }
+
     @include host-context(md-card-actions) {
         box-shadow: none !important;
         font-weight: bold;
@@ -139,4 +156,15 @@ button, a.button {
         }
     }
 
+    &.no-padding {
+        padding: 0 !important;
+        md-icon {
+            padding: 0 !important;
+        }
+    }
+
+    &.mat-mini-fab {
+        height: 30px;
+        width: 30px;
+    }
 }

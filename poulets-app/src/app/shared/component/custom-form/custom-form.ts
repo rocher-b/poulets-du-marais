@@ -3,24 +3,35 @@ import { ChangeDetectorRef, EventEmitter, Input, OnDestroy, OnInit, Output } fro
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
-
+import { CustomFormService } from '../../service/custom-form.service';
 
 export abstract class CustomForm implements OnInit, OnDestroy {
 
-    form: FormGroup;
-
     @Input() valid: boolean;
 
-    @Output() close = new EventEmitter<boolean>();
+    @Output() submit = new EventEmitter<boolean>();
 
-    formInitData: any;
+    form: FormGroup;
+
+    router: Router;
+
+    activatedRoute: ActivatedRoute;
+
+    customFormService: CustomFormService;
 
     subscriptions = new Subscription();
 
-    constructor(private cd: ChangeDetectorRef,
-                private location: Location,
-                private route: Router) {
-        console.log("route: ", this.route.url);
+    cd: ChangeDetectorRef;
+
+    constructor(protected location: Location,
+                cd: ChangeDetectorRef,
+                customFormService: CustomFormService,
+                router: Router,
+                activatedRoute: ActivatedRoute) {
+        this.router = router;
+        this.customFormService = customFormService;
+        this.cd = cd;
+        this.activatedRoute = activatedRoute;
     }
 
     ngOnInit() {
@@ -37,20 +48,27 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-
-        if (this.beforeSubmit()) {
-            if (this.route.url.indexOf("edit") > -1) {
-
+            if (this.router.url.indexOf("edit") > -1) {
+                this.subscriptions.add(this.customFormService.update(this.activatedRoute.snapshot.params.id, this.form.value).subscribe());
             }
-            this.previousPage();
-        }
+            else {
+                this.subscriptions.add(this.customFormService.create(this.form.value).subscribe());
+            }
+        this.previousPage();
     }
 
     previousPage() {
-        this.location.back();
+        /* back not refreshed in time after an update, we apparently should flush the session on the back-side */
+        setTimeout(() => {
+            this.location.back();
+        },150);
     }
 
     initForm(obj?: any) {
+    }
+
+    submitForm() {
+        this.submit.emit(true);
     }
 
     isValid() {

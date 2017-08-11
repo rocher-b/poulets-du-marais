@@ -24,7 +24,8 @@ export function buildRow(obj: any): any {
 export function buildRowWithEdit(obj: any, id?: any): any {
     obj.edit = {
         editButton: true,
-        userId: id,
+        deleteButton: true,
+        entityId: id,
         entity: obj
     };
 
