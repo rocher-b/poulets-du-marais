@@ -19,7 +19,7 @@ export class HenhouseListComponent {
     }
 
     ngOnInit() {
-        this.henhouses$ = this.henhouseService.getHenhousesList();
+        this.henhouses$ = this.henhouseService.getList();
     }
 
 }

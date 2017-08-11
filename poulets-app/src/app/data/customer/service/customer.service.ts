@@ -6,7 +6,7 @@ import { APP_CONSTANTS } from '../../../shared/app.constants';
 const CUSTOMERS = "/customers";
 
 @Injectable()
-export class CustomerService extends CustomFormService{
+export class CustomerService extends CustomFormService {
 
     constructor(protected http: HttpClient) {
         super(http, CUSTOMERS);

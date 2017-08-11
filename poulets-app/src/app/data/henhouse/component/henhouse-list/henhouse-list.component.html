@@ -1,19 +1,22 @@
-<div *ngFor="let henhouse of (henhouses$ | async)" layout="row">
-    <md-card span="5">
-        <md-card-header layout="row">
-            <md-card-title layout="row" layout-align="start center">
-                Poulailler {{ henhouse.number !== '0' && henhouse.number || 'Pondeuses' }}
-            </md-card-title>
-        </md-card-header>
+<div layout="row">
 
-        <md-card-actions layout="row" layout-align="start center">
-            <button md-button
-                    color="primary"
-                    class="hover"
-                    layout-fill
-                    [routerLink]="['..', henhouse.id]">
-                Voir le détail
-            </button>
-        </md-card-actions>
-    </md-card>
+    <div *ngFor="let henhouse of (henhouses$ | async)">
+        <md-card span="5">
+            <md-card-header layout="row">
+                <md-card-title layout="row" layout-align="start center">
+                    Poulailler {{ henhouse.number !== '0' && henhouse.number || 'Pondeuses' }}
+                </md-card-title>
+            </md-card-header>
+
+            <md-card-actions layout="row" layout-align="start center">
+                <button md-button
+                        color="primary"
+                        class="hover"
+                        layout-fill
+                        [routerLink]="['..', henhouse.id]">
+                    Voir le détail
+                </button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </div>

@@ -3,17 +3,19 @@
 
 //everything with datatable is from ngx-datatable
 table.srfp-table, ngx-datatable {
-    width: 100%;
+    &:not(.row-detail-array) {
+        width: 100%;
+    }
     border-bottom: 2px solid $grey-4;
 
     thead, datatable-header {
         tr, .datatable-header-inner {
-            border-left: 2px solid black;
-            border-right: 2px solid black;
+            border: 2px solid black;
             border-bottom: 0;
             height: 100%;
 
             th, datatable-header-cell {
+
                 background: black;
                 height: 100%;
                 color: white;
@@ -105,6 +107,7 @@ table.srfp-table, ngx-datatable {
             &.empty {
                 background: rgba(204, 204, 204, 0.2);
             }
+
         }
 
         datatable-body-cell {
@@ -176,7 +179,7 @@ table.srfp-table, ngx-datatable {
                 }
 
                 datatable-body-cell.cell-action {
-                    background:$primary;
+                    background: $primary;
                 }
 
                 .edit-button {
@@ -259,6 +262,20 @@ table.srfp-table, ngx-datatable {
 
     .datatable-scroll {
         width: 100% !important;
+    }
+
+    datatable-body {
+        .datatable-row-detail {
+            border-bottom: 1px solid $grey-4;
+
+            .row-detail {
+                padding: 10px 0 10px 20px;
+                border-right: 1px solid $grey-4;
+                border-left: 1px solid $grey-4;
+            }
+            //background: #f2f2f2;
+            padding: 0 30px 0 30px;
+        }
     }
 
 }

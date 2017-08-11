@@ -1,28 +1,29 @@
 {
-
-  "name": "henhouse",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "number": {
-      "type": "string",
-      "required": true
+    "name": "henhouse",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
     },
-    "cleaningDate": {
-      "type": "date"
+    "properties": {
+        "number": {
+            "type": "string",
+            "required": true
+        },
+        "cleaningDate": {
+            "type": "string"
+        },
+        "food": {
+            "type": [
+                {
+                    "date": "string",
+                    "quantity": "string"
+                }
+            ]
+        }
     },
-    "food": {
-      "type": {
-        "date": "date",
-        "quantity": "string"
-      }
-    }
-  },
-  "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": {}
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
 }

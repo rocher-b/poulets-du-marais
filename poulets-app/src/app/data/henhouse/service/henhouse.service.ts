@@ -1,17 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { APP_CONSTANTS } from '../../../shared/app.constants';
+import { Injectable } from "@angular/core";
+import { CustomFormService } from '../../../shared/service/custom-form.service';
 
 const HENHOUSE = "/Henhouses";
 
 @Injectable()
-export class HenhouseService {
+export class HenhouseService extends CustomFormService {
 
     constructor(protected http: HttpClient) {
+        super(http, HENHOUSE);
     }
 
-    getHenhousesList(): Observable<any[]> {
-        return this.http.get(APP_CONSTANTS.API_PATH + HENHOUSE);
-    }
 }

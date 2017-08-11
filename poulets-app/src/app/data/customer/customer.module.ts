@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerListComponent } from './component/customer-list/customer-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './service/customer.service';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
-import { CustomerService } from '../service/customer.service';
-import { DeletionDialogComponent } from '../../../shared/component/deletion-dialog/deletion-dialog.component';
+import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../../shared/component/helper/array-builder';
+import { CustomerService } from '../../service/customer.service';
+import { DeletionDialogComponent } from '../../../../shared/component/deletion-dialog/deletion-dialog.component';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 

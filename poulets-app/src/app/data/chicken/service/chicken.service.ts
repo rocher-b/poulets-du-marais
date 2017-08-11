@@ -1,19 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { APP_CONSTANTS } from '../../../shared/app.constants';
+import { Injectable } from "@angular/core";
+import { CustomFormService } from '../../../shared/service/custom-form.service';
 
 const CHICKENS = "/Chickens";
 
 @Injectable()
-export class ChickenService {
+export class ChickenService extends CustomFormService{
 
     constructor(protected http: HttpClient) {
+        super(http, CHICKENS);
     }
 
-    getChickens(filterId?: string): Observable<any[]> {
-        return this.http.get(filterId
-            ? APP_CONSTANTS.API_PATH + "/chickens?filter[where][henhouseId][like]=" + filterId
-            : APP_CONSTANTS.API_PATH + CHICKENS);
-    }
 }

@@ -1,9 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { ChickenService } from '../service/chicken.service';
-import { MdDialog } from "@angular/material";
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../shared/component/helper/array-builder';
+import { ChickenService } from '../service/chicken.service';
 
 
 @Component({
@@ -19,8 +18,7 @@ export class ChickenComponent {
     rows$: Observable<any[]>;
 
     constructor(protected http: HttpClient,
-                private chickenService: ChickenService,
-                public dialog: MdDialog) {
+                private chickenService: ChickenService) {
 
         this.columns = [
             buildColumn('N° lot','batch', 60),
@@ -34,7 +32,7 @@ export class ChickenComponent {
     }
 
     ngOnInit() {
-        this.rows$ = this.chickenService.getChickens().map(chickens => {
+        this.rows$ = this.chickenService.getList().map(chickens => {
             return buildRowWithEdit(chickens);
         });
     }
