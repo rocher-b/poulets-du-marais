@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { HenhouseService } from '../../service/henhouse.service';
@@ -6,15 +6,13 @@ import { HenhouseService } from '../../service/henhouse.service';
 @Component({
     selector: 'app-henhouse-list',
     templateUrl: './henhouse-list.component.html',
-    styleUrls: ['./henhouse-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HenhouseListComponent {
+export class HenhouseListComponent implements OnInit {
 
     henhouses$: Observable<any[]>;
 
-    constructor(protected http: HttpClient,
-                private henhouseService: HenhouseService) {
+    constructor(private henhouseService: HenhouseService) {
 
     }
 

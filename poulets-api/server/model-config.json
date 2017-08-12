@@ -50,5 +50,9 @@
   "laying-hen": {
     "dataSource": "pouletsDuMaraisDs",
     "public": true
+  },
+  "delivery": {
+    "dataSource": "pouletsDuMaraisDs",
+    "public": true
   }
 }

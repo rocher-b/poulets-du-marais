@@ -4,6 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
 import { CustomFormService } from '../../service/custom-form.service';
+import { MODE } from '../../mode-enum';
+import { checkModeWithUrl } from '../helper/helper';
 
 export abstract class CustomForm implements OnInit, OnDestroy {
 
@@ -48,7 +50,7 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-            if (this.router.url.indexOf("edit") > -1) {
+            if (checkModeWithUrl(this.router.url) == MODE.EDIT) {
                 this.subscriptions.add(this.customFormService.update(this.activatedRoute.snapshot.params.id, this.form.value).subscribe());
             }
             else {

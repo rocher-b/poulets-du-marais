@@ -17,6 +17,10 @@ md-select {
         display: none;
     }
 
+    .mat-select-placeholder {
+       font-style: italic ;
+    }
+
     .mat-select-arrow {
         &:after {
             background: white;

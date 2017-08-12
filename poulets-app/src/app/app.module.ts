@@ -11,6 +11,7 @@ import { CustomerModule } from './data/customer/customer.module';
 import { ChickenModule } from './data/chicken/chicken.module';
 import { LayingHenModule } from './data/laying-hen/laying-hen.module';
 import { HenhouseModule } from './data/henhouse/henhouse.module';
+import { DeliveryModule } from './delivery/delivery.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { HenhouseModule } from './data/henhouse/henhouse.module';
       ChickenModule.forRoot(),
       CustomerModule.forRoot(),
       DataModule.forRoot(),
+      DeliveryModule.forRoot(),
       HenhouseModule.forRoot(),
       HomeModule.forRoot(),
       LayingHenModule.forRoot(),

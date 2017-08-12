@@ -1,0 +1,41 @@
+<div layout-padding></div>
+
+<div class="table">
+    <table class="srfp-table">
+        <thead>
+        <tr>
+            <th rowspan="4">Ordre</th>
+            <th rowspan="4">Nom</th>
+            <th rowspan="4">Poulets</th>
+            <th rowspan="4">Abats</th>
+            <th rowspan="4">Oeufs</th>
+            <th colspan="4">Conserves</th>
+            <th rowspan="4">Prix</th>
+        </tr>
+        <th class="colspan">Pâté</th>
+        <th class="colspan">Rillettes</th>
+        <th class="colspan">Terrine</th>
+        <th class="colspan">Foie</th>
+        </thead>
+        <tr *ngFor="let array of createArrayLength" class="centered-text cursor">
+            <td span="1">{{array}}</td>
+            <td class="left-text">
+                <md-select placeholder="Selectionnez un nom"
+                           [floatPlaceholder]="'never'">
+                    <md-option [value]="customer.id" *ngFor="let customer of (customers$ | async)">{{customer.firstname}} {{ customer.lastname }}</md-option>
+                </md-select>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text">
+                </app-inline-edit>
+            </td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+            <td span="1">-</td>
+        </tr>
+    </table>
+    <div>

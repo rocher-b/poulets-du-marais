@@ -5,6 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DeletionDialogComponent } from './component/deletion-dialog/deletion-dialog.component';
+import { InlineEditComponent } from './component/inline-edit/inline-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { CustomMaterialModule } from './custom-material.module';
 
@@ -23,6 +24,7 @@ import { CustomMaterialModule } from './custom-material.module';
     ],
     exports: [
         CustomMaterialModule,
+        InlineEditComponent,
         NgxDatatableModule,
         NoopAnimationsModule,
         MenuComponent,
@@ -34,6 +36,7 @@ import { CustomMaterialModule } from './custom-material.module';
     ],
     declarations: [
         DeletionDialogComponent,
+        InlineEditComponent,
         MenuComponent
     ],
     providers: []
