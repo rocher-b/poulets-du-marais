@@ -74,11 +74,17 @@ table.srfp-table, ngx-datatable {
                 background: rgba(204, 204, 204, .1);
             }
         }
-
         &:last-child {
-            border-bottom: 1px solid $grey-4;
+            .datatable-row-detail {
+                border-bottom: 0;
+
+                .row-detail {
+                    border-bottom: 1px solid $grey-4;
+                }
+            }
         }
     }
+
 
     tr, datatable-body-row {
         border-bottom: 1px solid $grey-4;
@@ -265,6 +271,7 @@ table.srfp-table, ngx-datatable {
     }
 
     datatable-body {
+
         .datatable-row-detail {
             border-bottom: 1px solid $grey-4;
 
@@ -276,6 +283,7 @@ table.srfp-table, ngx-datatable {
             //background: #f2f2f2;
             padding: 0 30px 0 30px;
         }
+
     }
 
 }
