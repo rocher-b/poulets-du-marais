@@ -26,16 +26,53 @@
                 </md-select>
             </td>
             <td span="1">
-                <app-inline-edit type="text">
-                </app-inline-edit>
+                <app-inline-edit type="text"></app-inline-edit>
             </td>
-            <td span="1">-</td>
-            <td span="1">-</td>
-            <td span="1">-</td>
-            <td span="1">-</td>
-            <td span="1">-</td>
-            <td span="1">-</td>
-            <td span="1">-</td>
+            <td span="1">
+                <md-checkbox></md-checkbox>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
+            <td span="1">
+                <app-inline-edit type="text"></app-inline-edit>
+            </td>
         </tr>
     </table>
+
+    <div layout-small-padding></div>
+
+    <div layout="row" layout-align="space-between center">
+        <div></div>
+
+        <div layout="row" layout-align="center center">
+
+            <button md-button
+                    color="grey"
+                    span="2"
+                    (click)="previousPage()">
+                Retour
+            </button>
+
+            <div layout-padding></div>
+
+            <button md-button color="primary"
+                    md-raised-button span="2"
+                    type="submit">
+                Valider
+            </button>
+        </div>
+    </div>
     <div>

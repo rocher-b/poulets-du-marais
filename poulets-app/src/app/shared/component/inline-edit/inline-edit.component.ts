@@ -28,10 +28,10 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
 
     @ViewChild('inlineEditControl') inlineEditControl: ElementRef; // input DOM element
 
-    @Input() label: string = '';  // Label value for input element
     @Input() type: string = 'text'; // The type of input element
     @Input() required: boolean = false; // Is input requried?
     @Input() disabled: boolean = false; // Is input disabled?
+    @Input() defaultValue: (string | number) = "-";
 
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
@@ -52,7 +52,7 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
         }
     }
 
-    constructor(element: ElementRef, private _renderer: Renderer) {
+    constructor(element: ElementRef) {
     }
 
     // Required for ControlValueAccessor interface
@@ -63,6 +63,7 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
     // Required forControlValueAccessor interface
     public registerOnChange(fn: (_: any) => {}): void {
         this.onChange = fn;
+
     }
 
     // Required forControlValueAccessor interface
@@ -72,6 +73,13 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
 
     // Do stuff when the input element loses focus
     onBlur($event: Event) {
+        this.editing = false;
+    }
+
+    // allows to quit the input without saving the text
+    clearValue($event: Event) {
+        this._value = '';
+        this.onChange(this._value);
         this.editing = false;
     }
 
