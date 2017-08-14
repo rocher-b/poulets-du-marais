@@ -50,21 +50,22 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        debugger;
+        if (this.beforeSubmit()) {
             if (checkModeWithUrl(this.router.url) == MODE.EDIT) {
                 this.subscriptions.add(this.customFormService.update(this.activatedRoute.snapshot.params.id, this.form.value).subscribe());
             }
             else {
                 this.subscriptions.add(this.customFormService.create(this.form.value).subscribe());
             }
-        this.previousPage();
+            this.previousPage();
+        }
     }
 
     previousPage() {
         /* back not refreshed in time after an update, we apparently should flush the session on the back-side */
         setTimeout(() => {
             this.location.back();
-        },150);
+        }, 150);
     }
 
     initForm(obj?: any) {
