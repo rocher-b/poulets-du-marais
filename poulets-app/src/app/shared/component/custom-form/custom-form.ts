@@ -50,6 +50,7 @@ export abstract class CustomForm implements OnInit, OnDestroy {
     }
 
     onSubmit() {
+        debugger;
             if (checkModeWithUrl(this.router.url) == MODE.EDIT) {
                 this.subscriptions.add(this.customFormService.update(this.activatedRoute.snapshot.params.id, this.form.value).subscribe());
             }

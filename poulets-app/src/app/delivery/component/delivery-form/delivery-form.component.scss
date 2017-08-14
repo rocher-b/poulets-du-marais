@@ -11,16 +11,48 @@
     transition: width .7s ease-in-out;
     padding: 0 25px 0 25px;
 
-    th {
-        border: 1px solid white;
-        font-family: 'Muli';
-        text-align: center;
-        line-height: 20px !important;
+    table {
+        &:last-child {
+            border-bottom: 0px;
+        }
 
-        &.colspan {
-            background: black;
-            color: white;
-            font-weight: normal;
+        th {
+            border: 1px solid white;
+            font-family: 'Muli';
+            text-align: center;
+            line-height: 20px !important;
+
+            &.colspan {
+                background: black;
+                color: white;
+                font-weight: normal;
+            }
+
+        }
+
+        td {
+            &.inside-table {
+                text-align: center;
+
+                &:last-child {
+                    border-right: 0px;
+                    border-left: 0px;
+                    border-top: 1px solid $grey-4
+                }
+            }
+
+        }
+
+        tr {
+            &:last-child {
+                border: 0px;
+            }
+        }
+    }
+
+    md-icon {
+        &.inside-table {
+            font-size: rem(3);
         }
     }
 
