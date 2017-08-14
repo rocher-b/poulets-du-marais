@@ -23,25 +23,29 @@
             </thead>
 
             <tbody>
-            <tr *ngFor="let row of deliveries; let i = index" class="centered-text cursor">
-                <td span="1">{{i}}</td>
+            <tr *ngFor="let row of (deliveries$ | async); let i = index" class="centered-text cursor">
+                <td span="1">
+                    <label>{{i}}</label></td>
                 <td class="left-text">
-                    <md-select placeholder="Selectionnez un nom"
+                    <md-select [placeholder]="row[1].name ? row[1].name : 'Selectionnez un nom'"
                                [floatPlaceholder]="'never'"
                                [formControl]="form.controls.name.controls[i].controls.name">
-                        <md-option [value]="customer.id" *ngFor="let customer of (customers$ | async)">{{customer.firstname}} {{ customer.lastname }}</md-option>
+                        <md-option [value]="row[1].name ? row[1].name : (customer.firstname)" *ngFor="let customer of (customers$ | async)">{{customer.firstname}} {{ customer.lastname }}</md-option>
                     </md-select>
                 </td>
                 <td span="1">
                     <app-inline-edit type="text"
-                                     [formControl]="form.controls.chicken.controls[i].controls.chicken"></app-inline-edit>
+                                     [formControl]="form.controls.chicken.controls[i].controls.chicken"
+                                     [defaultValue]="row[2].chicken"></app-inline-edit>
                 </td>
                 <td span="1">
-                    <md-checkbox [formControl]="form.controls.abats.controls[i].controls.abats"></md-checkbox>
+                    <input type="checkbox" [formControl]="form.controls.abats.controls[i].controls.abats"
+                                 [checked]="row[3].abats">
                 </td>
                 <td span="1">
                     <app-inline-edit type="text"
-                                     [formControl]="form.controls.eggs.controls[i].controls.eggs"></app-inline-edit>
+                                     [formControl]="form.controls.eggs.controls[i].controls.eggs"
+                                     [defaultValue]="row[4].eggs"></app-inline-edit>
                 </td>
                 <td span="1">
                     <app-inline-edit type="text"

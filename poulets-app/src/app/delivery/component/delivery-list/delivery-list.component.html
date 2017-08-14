@@ -3,28 +3,38 @@
 <div class="table" layout="row">
     <div layout-small-padding></div>
 
-    <button md-button color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
+    <div layout="column">
+        <div layout="row">
+            <div layout-small-padding></div>
 
-    <div layout="row">
+            <button md-button span="2" color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
+        </div>
 
-        <div *ngFor="let delivery of (deliveries$ | async)">
-            <md-card span="5">
-                <md-card-header layout="row">
-                    <md-card-title layout="row" layout-align="start center">
-                        Delivery n° x
-                    </md-card-title>
-                </md-card-header>
+        <div layout-small-padding></div>
 
-                <md-card-actions layout="row" layout-align="start center">
-                    <button md-button
-                            color="primary"
-                            class="hover"
-                            layout-fill
-                            [routerLink]="['..', delivery.id]">
-                        Voir le détail
-                    </button>
-                </md-card-actions>
-            </md-card>
+        <div layout="row">
+            <div *ngFor="let delivery of (deliveries$ | async)">
+                <md-card span="5">
+                    <md-card-header layout="row">
+                        <md-card-title layout="row" layout-align="start between" layout-fill-width>
+                            <div class="cursor">
+                                Livraison du {{delivery.date}}
+                                <md-icon (click)="openDeletionDialog(delivery.id)">delete</md-icon>
+                            </div>
+                        </md-card-title>
+                    </md-card-header>
+
+                    <md-card-actions layout="row" layout-align="start center">
+                        <button md-button
+                                color="primary"
+                                class="hover"
+                                layout-fill
+                                [routerLink]="['..', delivery.id, 'edit']">
+                            Voir le détail
+                        </button>
+                    </md-card-actions>
+                </md-card>
+            </div>
         </div>
     </div>
 </div>

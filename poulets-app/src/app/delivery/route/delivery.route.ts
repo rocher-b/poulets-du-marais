@@ -10,5 +10,9 @@ export const DELIVERY_ROUTES: Routes = [
     {
         path: 'create',
         component: DeliveryFormComponent
+    },
+    {
+        path: ':id/edit',
+        component: DeliveryFormComponent
     }
 ];

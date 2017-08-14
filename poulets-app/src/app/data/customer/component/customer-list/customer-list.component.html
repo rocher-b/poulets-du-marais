@@ -31,7 +31,15 @@
                     </div>
                 </div>
 
-                <span *ngIf="!value.editButton"> {{setValue(value)}} </span>
+                <div *ngIf="isBoolean(value) && value === true" style="color: green;" layout-fill-width class="centered-text">
+                    <md-icon>check</md-icon>
+                </div>
+
+                <div *ngIf="isBoolean(value) && value === false" style="color: red;" layout-fill-width class="centered-text">
+                    <md-icon>clear</md-icon>
+                </div>
+
+                <span *ngIf="!value.editButton && !isBoolean(value)"> {{setValue(value)}} </span>
 
             </ng-template>
         </ngx-datatable-column>

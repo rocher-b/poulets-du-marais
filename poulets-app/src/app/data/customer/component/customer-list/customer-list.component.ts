@@ -14,7 +14,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
     styleUrls: ['./customer-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerListComponent implements OnInit{
+export class CustomerListComponent implements OnInit {
 
     columns: any[];
 
@@ -30,8 +30,8 @@ export class CustomerListComponent implements OnInit{
             buildColumn("Adresse", 'address'),
             buildColumn("Téléphone", 'tel'),
             buildColumn("Email", 'email'),
-            buildColumn("Abats", 'abats'),
-            buildColumnWithEdit("Editer",  'edit')
+            buildColumn("Abats", 'abats', 60),
+            buildColumnWithEdit("Editer", 'edit')
         ];
     }
 
@@ -43,10 +43,14 @@ export class CustomerListComponent implements OnInit{
 
     setValue(value: any) {
         if (typeof value === 'boolean')
-            return value === true ? 'oui' : 'non';
+            return value;
         else {
             return value ? value : '-';
         }
+    }
+
+    isBoolean(val) {
+        return typeof val === 'boolean';
     }
 
     openDeletionDialog(entityId: string) {
@@ -60,7 +64,7 @@ export class CustomerListComponent implements OnInit{
                     this.rows$ = this.customerService.getList().map(customers => customers.map(customer => {
                         return buildRowWithEdit(customer, customer.id);
                     }));
-                },150);
+                }, 150);
             }
         });
     }

@@ -5,14 +5,15 @@ import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomForm } from '../../../shared/component/custom-form/custom-form';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 import { CustomerService } from '../../../data/customer/service/customer.service';
+import { CustomForm } from '../../../shared/component/custom-form/custom-form';
 import { checkModeWithUrl } from '../../../shared/component/helper/helper';
 import { MODE } from '../../../shared/mode-enum';
-import { APP_CONSTANTS } from '../../../shared/app.constants';
-import { Observable } from 'rxjs/Observable';
 import { Delivery } from '../../model/delivery.model';
 import { DeliveryService } from '../../service/delivery.service';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -23,13 +24,16 @@ import { DeliveryService } from '../../service/delivery.service';
 })
 export class DeliveryFormComponent extends CustomForm implements OnInit {
 
-    createArrayLength: any[];
-
     customers$: Observable<any[]>;
 
-    deliveryModel: Delivery;
+    deliveryModelDefault: Delivery;
 
+    deliveries$: Observable<any[]>;
     deliveries: Delivery[] = [];
+
+    deliveriesRowFormat: Array<any[]>;
+
+    boolAbats:boolean[] = [false];
 
     constructor(cd: ChangeDetectorRef,
                 location: Location,
@@ -40,15 +44,15 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
                 private deliveryService: DeliveryService) {
         super(location, cd, deliveryService, router, activatedRoute);
 
-        // Describe deliveryModel which will be our model for empty rows
-        this.deliveryModel = {
-            id: '',
-            date: '',
-            order: [0],
-            name: [''],
-            chicken: [0],
-            abats: [false],
-            eggs: [0],
+        // Describe deliveryModelDefault which will be our model for empty rows
+        this.deliveryModelDefault = {
+            id: ' ',
+            date: ' ',
+            order: [{order: 0}],
+            name: [{name: ''}],
+            chicken: [{chicken: 0}],
+            abats: [{abats: false}],
+            eggs: [{eggs: 0}],
             conserves: [{
                 pate: 0,
                 rillettes: 0,
@@ -63,21 +67,53 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
     ngOnInit() {
         this.customers$ = this.customerService.getList();
 
-        if (checkModeWithUrl(this.router.url) === MODE.CREATE) {
-            this.initForm();
+        this.initForm();
 
+        if (checkModeWithUrl(this.router.url) === MODE.CREATE) {
             // We loop through every field (which are arrays) of the delivery model, to push inside the form.controls.
             // Doing this is only to allow us to have a first empty line arriving on the page
-            this.deliveryModel.order.forEach(order => (<FormArray> this.form.controls.order).push(this.initFormField('order', order)));
-            this.deliveryModel.name.forEach(name => (<FormArray> this.form.controls.name).push(this.initFormField('name', name)));
-            this.deliveryModel.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).push(this.initFormField('chicken', chicken)));
-            this.deliveryModel.abats.forEach(abats => (<FormArray> this.form.controls.abats).push(this.initFormField('abats', abats)));
-            this.deliveryModel.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).push(this.initFormField('eggs', eggs)));
-            this.deliveryModel.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).push(this.initFormConserves(conserves)));
+                this.deliveryModelDefault.order.forEach(order => (<FormArray> this.form.controls.order).push(this.initFormField('order', order)));
+                this.deliveryModelDefault.name.forEach(name => (<FormArray> this.form.controls.name).push(this.initFormField('name', name)));
+                this.deliveryModelDefault.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).push(this.initFormField('chicken', chicken)));
+                this.deliveryModelDefault.abats.forEach(abats => (<FormArray> this.form.controls.abats).push(this.initFormField('abats', abats)));
+                this.deliveryModelDefault.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).push(this.initFormField('eggs', eggs)));
+                this.deliveryModelDefault.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).push(this.initFormConserves(conserves)));
+
+            const deliveryAttr: string[] = Object.keys(this.deliveryModelDefault);
+            _.remove(deliveryAttr, row => (row === "date" || row === "id"));
 
             // we have to create an array to allow us to loop through its rows inside the view. It will contain the same type of data
             // as the form array, and be synced to it.
-            this.deliveries.push(this.deliveryModel);
+
+            for (let i = 0; i < deliveryAttr.length; i++) {
+                this.deliveries.push(this.deliveryModelDefault[deliveryAttr[i]]);
+            }
+            this.deliveriesRowFormat = this.buildPrefilledRows(this.deliveries);
+
+            this.deliveries$ = Observable.of(this.deliveriesRowFormat);
+        }
+        else if (this.activatedRoute.snapshot.params.id && checkModeWithUrl(this.router.url) === MODE.EDIT) {
+
+            this.deliveries$ = this.deliveryService.getDetails(this.activatedRoute.snapshot.params.id).map(delivery => {
+                delivery.order.forEach(order => (<FormArray> this.form.controls.order).push(this.initFormField('order', order)));
+                delivery.name.forEach(name => (<FormArray> this.form.controls.name).push(this.initFormField('name', name)));
+                delivery.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).push(this.initFormField('chicken', chicken)));
+                delivery.abats.forEach(abats => (<FormArray> this.form.controls.abats).push(this.initFormField('abats', abats)));
+                delivery.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).push(this.initFormField('eggs', eggs)));
+                delivery.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).push(this.initFormConserves(conserves)));
+
+                // gives an array of string, containing all the custom properties. We remove date and id because we don't need it for the view
+                const deliveryAttr: string[] = Object.keys(delivery);
+                _.remove(deliveryAttr, row => (row === "date" || row === "id"));
+
+                for (let i = 0; i < deliveryAttr.length; i++) {
+                    this.deliveries.push(delivery[deliveryAttr[i]]);
+                }
+
+                this.deliveriesRowFormat = this.buildPrefilledRows(this.deliveries);
+                return this.deliveriesRowFormat;
+
+            });
         }
     }
 
@@ -96,7 +132,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
     /**
      *  Initialize one field of a form
      */
-    initFormField(field: string, value?: (string | number | boolean)): FormGroup {
+    initFormField(field: string, value?: any): FormGroup {
         return this.fb.group({[field]: value});
     }
 
@@ -114,22 +150,38 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         });
     }
 
+    buildPrefilledRows(delivery: any[]): Array<any[]> {
+
+        let rows: Array<any[]>;
+
+        rows = new Array();
+
+            for (let numberOfRows = 0; numberOfRows < delivery[0].length; numberOfRows++) {
+                const temporaryRow = [];
+
+                for (let i = 0; i < delivery.length; i++) {
+                    temporaryRow.push(delivery[i][numberOfRows]);
+                }
+                rows.push(temporaryRow);
+            }
+        return rows;
+    }
+
     beforeSubmit(): boolean {
         this.form.controls.date.patchValue(new Date().toLocaleDateString());
-        console.log("form: ", this.form);
-        console.log("typeof: ", this.form.value.abats[0]);
+
         return true;
     }
 
     addRow(event: Event) {
         event.preventDefault(); // ensure this button doesn't try to submit the form
 
-        const emptyRow = {
-            order: 0,
-            name: '',
-            chicken: 0,
-            abats: false,
-            eggs: 0,
+        const emptyRow ={
+            order: {order: 0},
+            name: {name: ''},
+            chicken: {chicken: 0},
+            abats: {abats: false},
+            eggs: {eggs: 0},
             conserves: {
                 pate: 0,
                 rillettes: 0,
@@ -138,25 +190,33 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
             }
         };
 
-        this.deliveryModel.order.forEach(order => (<FormArray> this.form.controls.order).push(this.initFormField('order', emptyRow.order)));
-        this.deliveryModel.name.forEach(name => (<FormArray> this.form.controls.name).push(this.initFormField('name', emptyRow.name)));
-        this.deliveryModel.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).push(this.initFormField('chicken', emptyRow.chicken)));
-        this.deliveryModel.abats.forEach(abats => (<FormArray> this.form.controls.abats).push(this.initFormField('abats', emptyRow.abats)));
-        this.deliveryModel.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).push(this.initFormField('eggs', emptyRow.eggs)));
-        this.deliveryModel.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).push(this.initFormConserves(emptyRow.conserves)));
+        const deliveryAttr: string[] = Object.keys(emptyRow);
 
-        this.deliveries.push(this.deliveryModel);
+        this.deliveries = [];
+
+        for (let i = 0; i < deliveryAttr.length; i++) {
+            this.deliveries.push(emptyRow[deliveryAttr[i]]);
+        }
+        this.deliveriesRowFormat.push(this.deliveries);
+
+        this.deliveryModelDefault.order.forEach(order => (<FormArray> this.form.controls.order).push(this.initFormField('order', emptyRow.order)));
+        this.deliveryModelDefault.name.forEach(name => (<FormArray> this.form.controls.name).push(this.initFormField('name', emptyRow.name)));
+        this.deliveryModelDefault.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).push(this.initFormField('chicken', emptyRow.chicken)));
+        this.deliveryModelDefault.abats.forEach(abats => (<FormArray> this.form.controls.abats).push(this.initFormField('abats', emptyRow.abats)));
+        this.deliveryModelDefault.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).push(this.initFormField('eggs', emptyRow.eggs)));
+        this.deliveryModelDefault.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).push(this.initFormConserves(emptyRow.conserves)));
+
     }
 
     deleteRow(index: number) {
         // delete payoff from both the model and the FormArray
-        this.deliveryModel.order.forEach(order => (<FormArray> this.form.controls.order).removeAt(index));
-        this.deliveryModel.name.forEach(name => (<FormArray> this.form.controls.name).removeAt(index));
-        this.deliveryModel.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).removeAt(index));
-        this.deliveryModel.abats.forEach(abats => (<FormArray> this.form.controls.abats).removeAt(index));
-        this.deliveryModel.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).removeAt(index));
-        this.deliveryModel.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).removeAt(index));
+        this.deliveryModelDefault.order.forEach(order => (<FormArray> this.form.controls.order).removeAt(index));
+        this.deliveryModelDefault.name.forEach(name => (<FormArray> this.form.controls.name).removeAt(index));
+        this.deliveryModelDefault.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).removeAt(index));
+        this.deliveryModelDefault.abats.forEach(abats => (<FormArray> this.form.controls.abats).removeAt(index));
+        this.deliveryModelDefault.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).removeAt(index));
+        this.deliveryModelDefault.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).removeAt(index));
 
-        this.deliveries.splice(index, 1);
+        this.deliveriesRowFormat.splice(index, 1);
     }
 }

@@ -1,11 +1,11 @@
 export class Delivery {
     id: string;
     date: string;
-    order: number[];
-    name?: string[];
-    chicken?: number[];
-    abats?: boolean[];
-    eggs?: number[];
+    order: {}[];
+    name?: {}[];
+    chicken?: {}[];
+    abats?: {}[];
+    eggs?: {}[];
     conserves?: Conserves[];
 
     constructor(delivery?: Delivery) {

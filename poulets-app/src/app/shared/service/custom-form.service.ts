@@ -14,8 +14,6 @@ export abstract class CustomFormService {
     }
 
     create(entity: any): Observable<any[]> {
-        console.log("entity: ", entity);
-        console.log("path: ", this.PATH);
         return this.http.post(this.PATH, entity);
     }
 
