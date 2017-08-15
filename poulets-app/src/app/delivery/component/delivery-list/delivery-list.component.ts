@@ -28,10 +28,7 @@ export class DeliveryListComponent implements OnInit {
         dialogRef = this.dialog.open(DeletionDialogComponent);
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.deliveryService.delete(entityId).subscribe();
-                setTimeout(() => {
-                    this.deliveries$ = this.deliveryService.getList();
-                }, 300);
+                this.deliveryService.delete(entityId).subscribe(this.deliveries$ = this.deliveryService.getList());
             }
         });
     }

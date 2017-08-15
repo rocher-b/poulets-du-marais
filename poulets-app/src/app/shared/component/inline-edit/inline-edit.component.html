@@ -11,6 +11,6 @@
     </div>
     <div *ngIf="!editing">
         <!--<label class="block bold">{{label}}</label>-->
-        <div title="Cliquer pour éditer" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{displayValue(value)}}</div>
+        <div title="Cliquer pour éditer" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}</div>
     </div>
 </div>

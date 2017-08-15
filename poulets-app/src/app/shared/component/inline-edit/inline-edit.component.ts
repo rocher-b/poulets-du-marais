@@ -31,12 +31,12 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
     @Input() type: string = 'text'; // The type of input element
     @Input() required: boolean = false; // Is input requried?
     @Input() disabled: boolean = false; // Is input disabled?
-    @Input() defaultValue: (string | number | boolean) = "-";
+    @Input() defaultValue: (string | number) = "0";
 
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
 
-    private _value: any = ''; // Private variable for input value
+    private _value: any = this.defaultValue; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
     private editing: boolean = false; // Is Component in edit mode?
 
@@ -77,8 +77,8 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
     }
 
     // allows to quit the input without saving the text
-    clearValue($event: Event) {
-        this._value = this.defaultValue ? this.defaultValue : '-';
+    clearValue($event: Event, value: any) {
+        this._value = this.preValue;
         this.onChange(this._value);
         this.editing = false;
     }
@@ -93,15 +93,6 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
         this.editing = true;
         // Focus on the input element just as the editing begins
         setTimeout(_ => this.inlineEditControl.nativeElement.focus());
-    }
-
-    displayValue(value: any): any {
-        if (typeof value !== 'string'
-            && typeof value !== 'number'
-            && typeof value !== 'boolean') {
-           this._value = this.defaultValue;
-        }
-            return this._value;
     }
 
     ngOnInit() {
