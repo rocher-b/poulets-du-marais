@@ -588,6 +588,10 @@ $layout-breakpoint-lg: 1920px !default;
     cursor: pointer;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .no-padding {
     padding: 0 !important;
 }

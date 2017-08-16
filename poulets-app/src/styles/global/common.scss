@@ -261,17 +261,6 @@ html {
     margin: 0 !important;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
-.centered-text {
-    text-align: center;
-}
-.left-text {
-    text-align: left;
-}
-
 span.underline, a.underline {
     border-bottom: 1px solid $grey-3;
     &:hover {

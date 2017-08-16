@@ -1,0 +1,41 @@
+{
+    "name": "delivery",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "order": {
+            "type": [{"order": "number"}]
+        },
+        "date": {
+            "type": "string"
+        },
+        "name": {
+            "type": [{"name": "string"}]
+        },
+        "chicken": {
+            "type": [{"chicken": "number"}]
+        },
+        "abats": {
+            "type": [{"abats": "boolean"}],
+            "default": true
+        },
+        "eggs": {
+            "type": [{"eggs": "number"}]
+        },
+        "conserves": {
+            "type": [{
+                "pate": "number",
+                "rillettes": "number",
+                "mousse": "number",
+                "terrine": "number"
+            }]
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}
