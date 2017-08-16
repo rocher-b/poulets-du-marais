@@ -164,7 +164,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
     }
 
     /**
-     * Allows to loop through an array of object arrays (Array<{}[]) multiple times,
+     * Allows to loop through an array of objects contaning arrays of fields multiple times,
      * and build the rows that will be displayed in the view
      */
     buildPrefilledRows(modelArray: any): Array<any[]> {
@@ -175,10 +175,16 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         // Remove 'id' and 'date fields since they are outside of the arrays we run through
         _.remove(deliveryAttr, row => (row === "date" || row === "id"));
 
+        // We loop through the array of 'fields'. for each field, we push the corresponding field of "modelArray",
+        // which is an object containing an array of objects.
+        // In the end it gives us an array, with each component inside being an array of object with the same field (ie: array of 'chicken')
         for (let i = 0; i < deliveryAttr.length; i++) {
             delivery.push(modelArray[deliveryAttr[i]]);
         }
 
+        // Once we have have the array with the fields ordered,
+        // - we run through it as many times, as we need rows (determined by the number of field of the same type we have (ie: 3 objects 'order' = 3rows)
+        // - at every iteration, we retrieve the value at the given index, in order to go from from a vertical view ('delivery'), to a horizeontal view (the rows we want)
         for (let numberOfRows = 0; numberOfRows < delivery[0].length; numberOfRows++) {
             rows.push(this.indexValuesToRow(delivery, numberOfRows));
         }
@@ -197,7 +203,6 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         for (let i = 0; i < arr.length; i++) {
             row.push(arr[i][index]);
         }
-
         return row;
     }
 
