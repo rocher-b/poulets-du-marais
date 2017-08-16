@@ -33,8 +33,6 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
 
     deliveriesRowFormat: Array<any[]>;
 
-    boolAbats: boolean[] = [false];
-
     constructor(cd: ChangeDetectorRef,
                 location: Location,
                 router: Router,
@@ -48,23 +46,17 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         this.deliveryModelDefault = {
             id: ' ',
             date: ' ',
-            order: [{order: 0}, {order: 1}],
-            name: [{name: ''}, {name: ''}],
-            chicken: [{chicken: 0}, {chicken: 0}],
-            abats: [{abats: false}, {abats: true}],
-            eggs: [{eggs: 0}, {eggs: 0}],
+            order: [{order: 0}],
+            name: [{name: ''}],
+            chicken: [{chicken: 0}],
+            abats: [{abats: false}],
+            eggs: [{eggs: 0}],
             conserves: [{
                 pate: 0,
                 rillettes: 0,
                 terrine: 0,
                 mousse: 0
-            },
-                {
-                    pate: 0,
-                    rillettes: 0,
-                    terrine: 0,
-                    mousse: 0
-                }]
+            }]
         };
 
 
@@ -75,6 +67,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
 
         this.initForm();
 
+        // CREATE Mode
         if (checkModeWithUrl(this.router.url) === MODE.CREATE) {
             // We loop through every field (which are arrays) of the delivery model, to push inside the form.controls.
             // Doing this is only to allow us to have a first empty line arriving on the page
@@ -98,6 +91,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
 
             this.deliveries$ = Observable.of(this.deliveriesRowFormat);
         }
+        // EDIT Mode
         else if (this.activatedRoute.snapshot.params.id && checkModeWithUrl(this.router.url) === MODE.EDIT) {
 
             this.deliveries$ = this.deliveryService.getDetails(this.activatedRoute.snapshot.params.id).map(delivery => {
@@ -121,6 +115,10 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         }
     }
 
+    preFillTable() {
+
+    }
+
     initForm() {
         this.form = new FormGroup({
             date: new FormControl(''),
@@ -135,8 +133,8 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
 
     beforeSubmit(): boolean {
         // set the actual date at the moment of the creation
-        this.form.controls.date.patchValue(new Date().toLocaleDateString());
-        console.log("form: ", this.form);
+        let date = new Date();
+        this.form.controls.date.patchValue(date.toLocaleString());
 
         return true;
     }
@@ -161,7 +159,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
     }
 
     buildPrefilledRows(delivery: any[]): Array<any[]> {
-        let rows = [];
+        const rows = [];
 
         for (let numberOfRows = 0; numberOfRows < delivery[0].length; numberOfRows++) {
             rows.push(this.indexValuesToRow(delivery, numberOfRows));
@@ -183,7 +181,8 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
     addRow(event: Event) {
         event.preventDefault(); // ensure this button doesn't try to submit the form
 
-        let arrayOfValue = [];
+        const arrayOfValue = [];
+
         const emptyRow = {
             order: 0,
             name: '',
@@ -215,14 +214,15 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
 
     deleteRow(index: number) {
         // delete payoff from both the model and the FormArray
-        this.deliveryModelDefault.order.forEach(order => (<FormArray> this.form.controls.order).removeAt(index));
-        this.deliveryModelDefault.name.forEach(name => (<FormArray> this.form.controls.name).removeAt(index));
-        this.deliveryModelDefault.chicken.forEach(chicken => (<FormArray> this.form.controls.chicken).removeAt(index));
-        this.deliveryModelDefault.abats.forEach(abats => (<FormArray> this.form.controls.abats).removeAt(index));
-        this.deliveryModelDefault.eggs.forEach(eggs => (<FormArray> this.form.controls.eggs).removeAt(index));
-        this.deliveryModelDefault.conserves.forEach(conserves => (<FormArray> this.form.controls.conserves).removeAt(index));
+        (<FormArray> this.form.controls.order).removeAt(index);
+        (<FormArray> this.form.controls.name).removeAt(index);
+        (<FormArray> this.form.controls.chicken).removeAt(index);
+        (<FormArray> this.form.controls.abats).removeAt(index);
+        (<FormArray> this.form.controls.eggs).removeAt(index);
+        (<FormArray> this.form.controls.conserves).removeAt(index);
 
         this.deliveriesRowFormat.splice(index, 1);
         this.deliveries$ = Observable.of(this.deliveriesRowFormat);
     }
+
 }

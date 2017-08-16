@@ -8,8 +8,6 @@ import { DELIVERY_ROUTES } from './route/delivery.route';
 import { SharedModule } from '../shared/shared.module';
 import { DeliveryService } from './service/delivery.service';
 import { DeliveryFormComponent } from './component/delivery-form/delivery-form.component';
-import { DeliveryDetailComponent } from './component/delivery-detail/delivery-detail.component';
-
 
 @NgModule({
     imports: [
@@ -19,7 +17,6 @@ import { DeliveryDetailComponent } from './component/delivery-detail/delivery-de
         RouterModule.forRoot(DELIVERY_ROUTES),
     ],
     declarations: [
-        DeliveryDetailComponent,
         DeliveryFormComponent,
         DeliveryListComponent
     ],

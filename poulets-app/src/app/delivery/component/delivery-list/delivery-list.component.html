@@ -1,4 +1,4 @@
-<div layout-small-padding></div>
+<div layout-padding></div>
 
 <div class="table" layout="row">
     <div layout-small-padding></div>
@@ -7,20 +7,19 @@
         <div layout="row">
             <div layout-small-padding></div>
 
-            <button md-button span="2" color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
+            <button md-button color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
         </div>
 
         <div layout-small-padding></div>
 
         <div layout="row">
             <div *ngFor="let delivery of (deliveries$ | async)">
-                <md-card span="5">
-                    <md-card-header layout="row">
-                        <md-card-title layout="row" layout-align="start between" layout-fill-width>
-                            <div class="cursor">
-                                Livraison du {{delivery.date}}
-                                <md-icon (click)="openDeletionDialog(delivery.id)">delete</md-icon>
-                            </div>
+                <md-card *ngIf="delivery" span="5">
+                    <md-card-header layout="row" layout-align="center center">
+                        <md-card-title layout="row" layout-align="space-around center" layout-fill-width>
+                            <span>Livraison du {{delivery.date}}</span>
+                            <div class="divider"></div>
+                            <md-icon class="cursor" (click)="openDeletionDialog(delivery.id)">delete</md-icon>
                         </md-card-title>
                     </md-card-header>
 
@@ -34,6 +33,10 @@
                         </button>
                     </md-card-actions>
                 </md-card>
+            </div>
+            <div>
+                <div layout-small-padding></div>
+                <span *ngIf="(deliveries$ | async)?.length === 0">Pas de fiche de livraison créé</span>
             </div>
         </div>
     </div>

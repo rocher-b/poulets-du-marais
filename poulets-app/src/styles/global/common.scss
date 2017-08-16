@@ -120,7 +120,7 @@ body {
     padding: 0 15px;
 
     div {
-        font-family: $font-family-Renault;
+        font-family: 'Muli', serif;
         font-weight: bold;
     }
 
@@ -135,7 +135,7 @@ body {
 .toggler {
     font-size: rem(1.4);
     text-transform: uppercase;
-    font-family: $font-family-Renault;
+    font-family: 'Muli', serif;
     color: $grey-1;
 }
 
@@ -147,7 +147,7 @@ form {
     }
 
     label {
-        font-family: $font-family-Renault;
+        font-family: 'Muli', serif;
     }
 }
 
@@ -157,7 +157,7 @@ form {
 
 h1, h2, h3, h4, h5, h6, .font-renault {
     margin-top: 0;
-    font-family: $font-family-Renault;
+    font-family: 'Muli', serif;
 }
 
 .bold {

@@ -1,7 +1,6 @@
 <div layout="column">
     <a class="entry"
-       [routerLink]="['/home']"
-       routerLinkActive="active-link"
+       [routerLink]="['']"
        layout-fill-width>
         Accueil
     </a>
@@ -12,10 +11,15 @@
         Fiches de livraison
     </a>
     <a class="entry"
-       layout-fill-width>
+       layout="row"
+       layout-align="space-between center"
+       layout-fill-width
+       (click)="dataOpened = !dataOpened">
         Données
+        <md-icon *ngIf="!dataOpened">keyboard_arrow_down</md-icon>
+        <md-icon *ngIf="dataOpened">keyboard_arrow_up</md-icon>
     </a>
-    <div [class.opened]="true"
+    <div [class.opened]="dataOpened"
          class="submenu">
         <div class="subentry"
              [routerLink]="['data', 'customers', 'list']"

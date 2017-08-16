@@ -31,12 +31,11 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
     @Input() type: string = 'text'; // The type of input element
     @Input() required: boolean = false; // Is input requried?
     @Input() disabled: boolean = false; // Is input disabled?
-    @Input() defaultValue: (string | number) = "0";
 
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
 
-    private _value: any = this.defaultValue; // Private variable for input value
+    private _value: any = ''; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
     private editing: boolean = false; // Is Component in edit mode?
 

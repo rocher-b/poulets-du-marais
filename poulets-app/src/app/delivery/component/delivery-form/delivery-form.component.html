@@ -14,7 +14,7 @@
                 <th rowspan="4">Oeufs</th>
                 <th colspan="4">Conserves</th>
                 <th rowspan="4">Prix</th>
-                <th rowspan="4"></th>
+                <th rowspan="4">Effacer</th>
             </tr>
             <th class="colspan">Pâté</th>
             <th class="colspan">Rillettes</th>
@@ -25,15 +25,14 @@
             <tbody>
             <tr *ngFor="let row of (deliveries$ | async); let i = index" class="centered-text cursor">
                 <td span="1" style="cursor: default;">
-                    <input class="input-label" disabled [value]="i" [formControl]="form.controls.order.controls[i].controls.order">
+                    <input class="input-label" disabled [value]="i + 1" [formControl]="form.controls.order.controls[i].controls.order">
                 </td>
-                <td class="left-text">
-                    <md-select placeholder="Selectionnez un nom"
+                <td class="left-text" span="2">
+                    <md-select placeholder="Selectionnez..."
                                [floatPlaceholder]="'never'"
                                [formControl]="form.controls.name.controls[i].controls.name">
                         <md-option [value]="(customer.firstname + ' ' + customer.lastname)" *ngFor="let customer of (customers$ | async)">{{customer.firstname}} {{ customer.lastname }}</md-option>
                     </md-select>
-                </td>
                 <td span="1">
                     <app-inline-edit type="text"
                                      [formControl]="form.controls.chicken.controls[i].controls.chicken"></app-inline-edit>
@@ -72,7 +71,10 @@
             </tbody>
             <tr>
                 <td colspan="11" class="inside-table">
-                    <md-icon class="cursor" (click)="addRow($event)">add_circle</md-icon>
+                    <div layout="row" layout-align="center center">
+                        <label>Ajouter</label>
+                        <md-icon class="cursor" (click)="addRow($event)">add_circle</md-icon>
+                    </div>
                 </td>
             </tr>
         </table>

@@ -43,8 +43,8 @@ md-card {
             height: 50px;
             display: flex !important;
             margin: 0 !important;
-            text-transform: uppercase;
-            font-size: rem(1.6) !important;
+            text-transform: initial;
+            font-size: rem(1.4) !important;
             color: #1e1b1c;
             line-height: rem(1.7);
             text-align: left;
@@ -58,8 +58,8 @@ md-card {
             }
 
             .divider {
-                width: 1px;
-                height: 17px;
+                width: 2px;
+                height: 40px;
                 border-right: 1px solid $grey-4;
                 margin: 0 10px;
             }

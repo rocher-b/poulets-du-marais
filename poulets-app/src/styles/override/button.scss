@@ -10,7 +10,7 @@ button, a.button {
     outline: none !important;
 
     span {
-        font-family: $font-family-Renault !important;
+        font-family: 'Muli', serif !important;
         font-weight: normal !important;
     }
 
@@ -116,6 +116,7 @@ button, a.button {
         .mat-button-wrapper {
             font-size: rem(1.7);
             letter-spacing: 1px;
+            text-transform: initial;
         }
     }
 

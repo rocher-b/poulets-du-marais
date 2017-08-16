@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../../../shared/component/helper/array-builder';
 import { CustomerService } from '../../service/customer.service';
 import { DeletionDialogComponent } from '../../../../shared/component/deletion-dialog/deletion-dialog.component';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -14,13 +15,16 @@ import { MdDialog, MdDialogRef } from '@angular/material';
     styleUrls: ['./customer-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit, OnDestroy {
 
     columns: any[];
 
     rows$: Observable<any[]>;
 
-    constructor(protected http: HttpClient,
+    subscriptions = new Subscription();
+
+    constructor(private cd: ChangeDetectorRef,
+                protected http: HttpClient,
                 private customerService: CustomerService,
                 public dialog: MdDialog) {
 
@@ -57,16 +61,22 @@ export class CustomerListComponent implements OnInit {
         let dialogRef: MdDialogRef<DeletionDialogComponent>;
 
         dialogRef = this.dialog.open(DeletionDialogComponent);
-        dialogRef.afterClosed().subscribe(result => {
+        this.subscriptions.add(dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.customerService.delete(entityId).subscribe();
-                setTimeout(() => {
-                    this.rows$ = this.customerService.getList().map(customers => customers.map(customer => {
-                        return buildRowWithEdit(customer, customer.id);
+                this.subscriptions.add(this.customerService.delete(entityId)
+                    .subscribe(success => {
+                        this.rows$ = this.customerService.getList().map(customers => customers.map(customer => {
+                            return buildRowWithEdit(customer, customer.id);
+                        }));
+                        this.cd.markForCheck();
                     }));
-                }, 150);
             }
-        });
+        }));
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.unsubscribe();
+
     }
 }
 
