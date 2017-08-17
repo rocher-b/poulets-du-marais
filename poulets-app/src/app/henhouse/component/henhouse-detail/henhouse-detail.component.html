@@ -42,52 +42,62 @@
                         </div>
 
                         <!-- Cost informations -->
-                        <div layout="row" layout-align="start start" layout-fill-width class="cost-detail">
-
-                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
-                                <h3><strong>Items</strong></h3>
-
-                                <span>Abattage</span>
-
-                                <div layout-very-small-padding></div>
-                                <span>Aliments</span>
-
-                                <div layout-very-small-padding></div>
-                                <span>Achat</span>
-
-                                <div layout-medium-padding></div>
+                        <div layout="column" layout-align="center center" layout-fill-width class="cost-detail">
+                            <span class="text-center title" layout-fill-width>
+                                Détails des coûts
                                 <div layout-small-padding></div>
-                                <div layout-very-small-padding></div>
-                            </div>
+                            </span>
 
-                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
-                                <h3><strong>Coûts unitaires</strong></h3>
+                            <div layout-very-small-padding></div>
 
-                                <span>{{row.cost.cullingUP}} €</span>
 
-                                <div layout-very-small-padding></div>
-                                <span>{{row.cost.foodUP}} €</span>
+                            <div layout="row" layout-align="start start" layout-fill-width>
 
-                                <div layout-very-small-padding></div>
-                                <span>{{row.cost.purchasingUP}} €</span>
-                                <div layout-medium-padding></div>
-                                <div layout-small-padding></div>
-                                <div layout-very-small-padding></div>
-                            </div>
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <h3><strong>Items</strong></h3>
 
-                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
-                                <h3><strong>Coûts totaux</strong></h3>
+                                    <span>Abattage</span>
 
-                                <span>{{row.cost.cullingUP  * row.quantity}} €</span>
+                                    <div layout-very-small-padding></div>
+                                    <span>Aliments</span>
 
-                                <div layout-very-small-padding></div>
-                                <span>{{row.cost.foodUP  * row.quantity}} €</span>
+                                    <div layout-very-small-padding></div>
+                                    <span>Achat</span>
 
-                                <div layout-very-small-padding></div>
-                                <span>{{row.cost.purchasingUP  * row.quantity}} €</span>
+                                    <div layout-medium-padding></div>
+                                    <div layout-small-padding></div>
+                                    <div layout-very-small-padding></div>
+                                </div>
 
-                                <div layout-padding></div>
-                                <h3 class="total-cost"><strong>{{totalCost}} €</strong></h3>
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <h3><strong>Coûts unitaires</strong></h3>
+
+                                    <span>{{row.cost.cullingUP}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.foodUP}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.purchasingUP}} €</span>
+                                    <div layout-medium-padding></div>
+                                    <div layout-small-padding></div>
+                                    <div layout-very-small-padding></div>
+                                </div>
+
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <h3><strong>Coûts totaux</strong></h3>
+
+                                    <span>{{row.cost.cullingUP  * row.quantity}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.foodUP  * row.quantity}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.purchasingUP  * row.quantity}} €</span>
+
+                                    <div layout-padding></div>
+                                    <h3 class="total-cost"><strong>{{totalCost}} €</strong></h3>
+                                </div>
                             </div>
                         </div>
 
@@ -162,8 +172,9 @@
                     <md-icon>mode_edit</md-icon>
                 </div>
 
-                <div *ngIf="value.detailButton" class="edit-button cursor" (click)="toggleExpandRow(row)">
-                    <md-icon>remove_red_eye</md-icon>
+                <div *ngIf="value.detailButton" class="edit-button cursor" (click)="toggleExpandRow(row);">
+                    <img *ngIf="checkIndexOpened(row['$$index'])" class="table-row-button" src="../../../../assets/images/blink.svg"/>
+                    <img *ngIf="!checkIndexOpened(row['$$index'])" class="table-row-button" src="../../../../assets/images/visible-opened-eye-interface-option.svg"/>
                 </div>
 
                 <div class="text-center">

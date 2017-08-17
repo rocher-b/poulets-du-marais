@@ -17,7 +17,6 @@
         border-bottom: 1px solid $grey-2;
 
         .fat-divider {
-            border-right: 1px solid $grey-2;
             padding: 15px 0 20px 0;
 
             &:last-child {
@@ -27,8 +26,13 @@
     }
 
     .cost-detail {
-        border-bottom: 1px dashed $grey-2;
+        border-bottom: 1px solid $grey-2;
         padding: 20px 0 20px 0;
+
+        .title {
+            font-size: rem(2);
+            border-bottom: 1px solid $grey-2;
+        }
 
         .dashed-divider {
             border-left: 1px dashed $grey-2;
@@ -65,5 +69,9 @@
 
     img {
         width: 50px;
+
+        &.table-row-button {
+            width: 23px;
+        }
     }
 }
