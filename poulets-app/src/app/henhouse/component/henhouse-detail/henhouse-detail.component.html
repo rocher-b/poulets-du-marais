@@ -1,0 +1,156 @@
+<div layout-padding></div>
+<div class="table">
+    <ngx-datatable
+            #myTable
+            class="material"
+            [rows]="rows$ | async"
+            [columns]="columns"
+            columnMode="force"
+            [footerHeight]="30"
+            [rowHeight]="'auto'"
+            [limit]="15">
+
+        <ngx-datatable-row-detail [rowHeight]="'auto'" #myDetailRow (toggle)="onDetailToggle($event)">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div class="row-detail" layout-fill-height layout="column">
+
+                    <div layout="column" layout-align="start start">
+                        <div layout="row" layout-align="space-between start" layout-fill-width class="header-detail ">
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/bird-in-broken-egg-from-side-view.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.age}} </span>
+                                <span class="mid-number-detail"> {{row.age > 1 ? 'jours' : 'jour'}}</span>
+                            </div>
+
+                            <div layout-small-padding></div>
+
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/birds-group.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.quantity}}</span>
+                                <span class="mid-number-detail">poulets</span>
+                            </div>
+
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/catholicism.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.loss}}</span>
+                                <span class="mid-number-detail">pertes</span>
+                            </div>
+
+                        </div>
+
+                        <div layout-padding></div>
+
+                        <div layout="row" layout-align="start start" layout-fill-width>
+
+                        </div>
+
+                        <div layout="row" layout-align="start start" layout-fill-width>
+
+                        </div>
+                    </div>
+
+
+                    <div layout="row">
+                        <span><strong>Coûts unitaires : </strong></span>
+
+                        <div layout-very-small-padding></div>
+
+                        <div layout="column">
+                            <span>Abattage : {{row.cost.cullingUP}}€</span>
+
+                            <div layout-very-small-padding></div>
+                            <span>Aliments : {{row.cost.foodUP}}€</span>
+
+                            <div layout-very-small-padding></div>
+                            <span>Achat : {{row.cost.purchasingUP}}€</span>
+                        </div>
+                    </div>
+
+                    <div layout-padding></div>
+
+                    <div layout="row" layout-align="space-around start">
+                        <table class="srfp-table row-detail-array">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Abattage</th>
+                            </tr>
+                            </thead>
+                            <tr *ngFor="let culling of row.culling">
+                                <td>Date : {{culling.date}}</td>
+                                <td>Abattus : {{culling.quantity}}</td>
+                            </tr>
+                        </table>
+
+                        <table class="srfp-table row-detail-array">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Aliments</th>
+                            </tr>
+                            </thead>
+                            <tr *ngFor="let food of henhouse">
+                                <td>Date : {{food.date}}</td>
+                                <td>Quantité : {{food.quantity}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div layout-padding></div>
+
+                    <div layout="row">
+
+                        <span><strong>Coûts totaux : </strong></span>
+
+                        <div layout-very-small-padding></div>
+
+                        <div layout="column">
+                            <span>Abattage : {{row.cost.cullingUP * row.quantity}}€</span>
+
+                            <div layout-very-small-padding></div>
+                            <span>Aliments : {{row.cost.foodUP * row.quantity}}€</span>
+
+                            <div layout-very-small-padding></div>
+                            <span>Achat : {{row.cost.purchasingUP * row.quantity}}€</span>
+
+                            <div layout-small-padding></div>
+                            <span><strong>Total : {{ totalCost }}€</strong></span>
+
+                            <div layout-small-padding></div>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-row-detail>
+
+        <ngx-datatable-column [name]="column.name"
+                              [draggable]="false"
+                              [resizeable]="false"
+                              [sortable]="column.sortable"
+                              [prop]="column.prop"
+                              [maxWidth]="column.maxWidth"
+                              *ngFor="let column of columns">
+            <ng-template let-row="row" let-expanded="expanded" let-value="value" ngx-datatable-cell-template>
+                <div *ngIf="value.editButton" class="edit-button cursor" (click)="openDialog($event)">
+                    <md-icon>mode_edit</md-icon>
+                </div>
+
+                <div *ngIf="value.detailButton" class="edit-button cursor" (click)="toggleExpandRow(row)">
+                    <md-icon>remove_red_eye</md-icon>
+                </div>
+
+                <div>
+                    <span *ngIf="!value.editButton && !value.detailButton">{{value}}</span>
+                </div>
+
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+</div>
+
+
+

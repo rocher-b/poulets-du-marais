@@ -5,46 +5,49 @@
         Accueil
     </a>
     <a class="entry"
+         [routerLink]="['customers', 'list']"
+         routerLinkActive="active-link"
+         layout-fill-width>
+        Clients
+    </a>
+    <a class="entry"
        [routerLink]="['/delivery', 'list']"
        routerLinkActive="active-link"
        layout-fill-width>
-        Fiches de livraison
+        Livraison
+    </a>
+    <a class="entry"
+       layout-fill-width>
+        Conserves
     </a>
     <a class="entry"
        layout="row"
        layout-align="space-between center"
        layout-fill-width
        (click)="dataOpened = !dataOpened">
-        Données
+        Poulaillers
         <md-icon *ngIf="!dataOpened">keyboard_arrow_down</md-icon>
         <md-icon *ngIf="dataOpened">keyboard_arrow_up</md-icon>
     </a>
     <div [class.opened]="dataOpened"
          class="submenu">
         <div class="subentry"
-             [routerLink]="['data', 'customers', 'list']"
+             [routerLink]="['henhouse', 'laying-hens']"
              routerLinkActive="active-link"
              layout-fill-width>
-            Clients
+            Poules pondeuses
         </div>
         <div class="subentry"
-             [routerLink]="['data', 'henhouses', 'list']"
-             routerLinkActive="active-link"
-             layout-fill-width>
-            Poulaillers
-        </div>
-        <div class="subentry"
-             [routerLink]="['data', 'chicken']"
+             [routerLink]="['henhouse', 'chicken']"
              routerLinkActive="active-link"
              layout-fill-width>
             Poulets
         </div>
         <div class="subentry"
-             [routerLink]="['data', 'laying-hens']"
+             [routerLink]="['henhouse', 'list']"
              routerLinkActive="active-link"
              layout-fill-width>
-            Poules pondeuses
+            Poulaillers
         </div>
     </div>
-
 </div>

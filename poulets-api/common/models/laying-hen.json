@@ -1,58 +1,58 @@
 {
-  "name": "laying-hen",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "batch": {
-      "type": "string",
-      "default": "1"
+    "name": "laying-hen",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
     },
-    "age": {
-      "type": "string"
-    },
-    "actualQuantity": {
-      "type": "string"
-    },
-    "loss": {
-      "type": "string"
-    },
-    "arrivingDate": {
-      "type": "string"
-    },
-    "currentHenhouseId": {
-      "type": "string",
-      "required": true
-    },
-    "sold": {
-      "type": "string"
-    },
-    "cost": {
-      "type": {
-        "purchasingPriceUP": "string",
-        "foodUP": "string",
-        "totalUP": "string"
-      }
-    },
-    "clutch": {
-      "type": [
-        {
-          "date": "string",
-          "quantity": "string"
+    "properties": {
+        "batch": {
+            "type": "string",
+            "default": "1"
+        },
+        "age": {
+            "type": "string"
+        },
+        "actualQuantity": {
+            "type": "string"
+        },
+        "loss": {
+            "type": "string"
+        },
+        "arrivingDate": {
+            "type": "string"
+        },
+        "henhouseId": {
+            "type": "string",
+            "required": true
+        },
+        "sold": {
+            "type": "string"
+        },
+        "cost": {
+            "type": {
+                "purchasingPriceUP": "string",
+                "foodUP": "string",
+                "totalUP": "string"
+            }
+        },
+        "clutch": {
+            "type": [
+                {
+                    "date": "string",
+                    "quantity": "string"
+                }
+            ]
         }
-      ]
-    }
-  },
-  "validations": [],
-  "relations": {
-    "henhouse": {
-      "type": "belongsTo",
-      "model": "henhouse",
-      "foreignKey": "currentHenhouseId"
-    }
-  },
-  "acls": [],
-  "methods": {}
+    },
+    "validations": [],
+    "relations": {
+        "henhouse": {
+            "type": "belongsTo",
+            "model": "henhouse",
+            "foreignKey": "currentHenhouseId"
+        }
+    },
+    "acls": [],
+    "methods": {}
 }

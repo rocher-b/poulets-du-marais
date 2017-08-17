@@ -23,7 +23,7 @@
             </thead>
 
             <tbody>
-            <tr *ngFor="let row of (deliveries$ | async); let i = index" class="centered-text cursor">
+            <tr *ngFor="let row of (deliveries$ | async); let i = index" class="text-center cursor">
                 <td span="1" style="cursor: default;">
                     <input class="input-label" disabled [value]="i + 1" [formControl]="form.controls.order.controls[i].controls.order">
                 </td>

@@ -29,5 +29,9 @@ export function buildRowWithEdit(obj: any, id?: any): any {
         entity: obj
     };
 
+    obj.detail = {
+        detailButton: true
+    };
+
     return obj;
 }

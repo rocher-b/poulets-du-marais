@@ -16,7 +16,7 @@ table.srfp-table, ngx-datatable {
 
             th, datatable-header-cell {
 
-                background: black;
+                background: $primary-5;
                 height: 100%;
                 color: white;
                 line-height: 37px;
@@ -276,7 +276,7 @@ table.srfp-table, ngx-datatable {
             border-bottom: 1px solid $grey-4;
 
             .row-detail {
-                padding: 10px 0 10px 20px;
+                padding: 10px 20px 10px 20px;
                 border-right: 1px solid $grey-4;
                 border-left: 1px solid $grey-4;
             }

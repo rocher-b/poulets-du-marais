@@ -1,0 +1,89 @@
+<div class="form-header" layout="row" layout-align="space-between center">
+    <div layout="row" layout-align="start center">
+        <md-icon (click)="previousPage()" class="pointer">arrow_back</md-icon>
+        <div>Editer Client</div>
+    </div>
+</div>
+
+<div class="container" layout="column">
+    <div layout-padding></div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div layout="row" layout-align="space-between start">
+
+            <div layout="column" flex-grow="1">
+                <label>Prénom*</label>
+                <md-input-container [floatPlaceholder]="'never'">
+                    <input mdInput
+                           formControlName="firstname">
+                </md-input-container>
+            </div>
+
+            <div layout-very-small-padding></div>
+
+            <div layout="column" flex-grow="1">
+                <label>Nom</label>
+                <md-input-container [floatPlaceholder]="'never'">
+                    <input mdInput
+                           formControlName="lastname">
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-align="space-between start">
+
+            <div layout="column" flex-grow="1">
+                <label>Adresse</label>
+                <md-input-container [floatPlaceholder]="'never'">
+                    <input mdInput
+                           formControlName="address">
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-align="start center">
+            <div layout="column" span="5">
+                <label>Téléphone</label>
+                <md-input-container [floatPlaceholder]="'never'">
+                    <input mdInput
+                           formControlName="tel">
+                </md-input-container>
+            </div>
+
+            <div layout-very-small-padding></div>
+
+            <div layout="column">
+                <label>Abats</label>
+                <md-checkbox formControlName="abats"></md-checkbox>
+            </div>
+        </div>
+
+
+        <div layout="row" layout-align="space-between center">
+            <div></div>
+
+            <div layout="row" layout-align="center center">
+
+                <button md-button
+                        color="grey"
+                        span="2"
+                        (click)="previousPage()">
+                    Retour
+                </button>
+
+                <div layout-padding></div>
+
+                <button md-button color="primary"
+                        md-raised-button span="2"
+                        type="submit">
+                    Valider
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+

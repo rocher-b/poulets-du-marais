@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-import { CustomerService } from '../../../data/customer/service/customer.service';
+import { CustomerService } from '../../../customer/service/customer.service';
 import { CustomForm } from '../../../shared/component/custom-form/custom-form';
 import { checkModeWithUrl } from '../../../shared/component/helper/helper';
 import { MODE } from '../../../shared/mode-enum';

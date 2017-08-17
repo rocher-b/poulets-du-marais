@@ -1,0 +1,28 @@
+<div layout="row">
+
+    <div *ngFor="let henhouse of (henhouses$ | async)">
+        <md-card span="5">
+            <md-card-header>
+                <md-card-title layout-fill-width>
+                    <div layout="row" layout-align="center center" layout-fill-width>
+                        Poulailler {{ henhouse.number !== '0' && ('n°' + henhouse.number) || 'Pondeuses' }}
+                    </div>
+                    <div layout="row" layout-align="end center">
+                        <div class="divider"></div>
+                        <md-icon class="cursor" [routerLink]="['..', henhouse.id, 'edit']">mode_edit</md-icon>
+                    </div>
+                </md-card-title>
+            </md-card-header>
+
+            <md-card-actions layout="row" layout-align="start center">
+                <button md-button
+                        color="primary"
+                        class="hover"
+                        layout-fill
+                        [routerLink]="['..', henhouse.id]">
+                    Voir le détail
+                </button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { DeliveryService } from '../../service/delivery.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { DeletionDialogComponent } from '../../../shared/component/deletion-dialog/deletion-dialog.component';
 import { Subscription } from 'rxjs/Subscription';
+import { Delivery } from '../../model/delivery.model';
 
 @Component({
     selector: 'app-delivery-list',
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DeliveryListComponent implements OnInit, OnDestroy {
 
-    deliveries$: Observable<any[]>;
+    deliveries$: Observable<Delivery[]>;
 
     subscriptions = new Subscription();
 

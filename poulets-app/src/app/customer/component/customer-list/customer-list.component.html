@@ -1,0 +1,49 @@
+<div layout-padding></div>
+
+<div class="table">
+    <button md-button color="primary" md-raised-button class="tool-button" [routerLink]="['..', 'create']">Créer</button>
+
+    <div layout-padding></div>
+
+    <ngx-datatable
+            class="material"
+            [rows]="rows$ | async"
+            [columns]="columns"
+            columnMode="force"
+            [footerHeight]="30"
+            [rowHeight]="'auto'"
+            [limit]="10">
+        <ngx-datatable-column [name]="column.name"
+                              [draggable]="false"
+                              [resizeable]="false"
+                              [sortable]="column.sortable"
+                              [prop]="column.prop"
+                              [maxWidth]="column.maxWidth"
+                              *ngFor="let column of columns">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <div *ngIf="value.editButton && value.deleteButton" layout="row">
+                    <div class="edit-button cursor">
+                        <md-icon [routerLink]="['..', value.entityId, 'edit']">mode_edit</md-icon>
+                    </div>
+                    <div layout-very-small-padding></div>
+                    <div class="edit-button cursor">
+                        <md-icon (click)="openDeletionDialog(value.entityId)">delete</md-icon>
+                    </div>
+                </div>
+
+                <div *ngIf="isBoolean(value) && value === true" style="color: green;" layout-fill-width class="text-center">
+                    <md-icon>check</md-icon>
+                </div>
+
+                <div *ngIf="isBoolean(value) && value === false" style="color: red;" layout-fill-width class="text-center">
+                    <md-icon>clear</md-icon>
+                </div>
+
+                <span *ngIf="!value.editButton && !isBoolean(value)"> {{setValue(value)}} </span>
+
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+</div>

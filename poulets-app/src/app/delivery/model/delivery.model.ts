@@ -25,8 +25,8 @@ export class Delivery {
 }
 
 export interface Conserves {
-        pate: number;
-        rillettes: number;
-        terrine: number;
-        mousse: number;
+    pate: number;
+    rillettes: number;
+    terrine: number;
+    mousse: number;
 }
