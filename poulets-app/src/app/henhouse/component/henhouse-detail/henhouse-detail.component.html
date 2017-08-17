@@ -15,10 +15,10 @@
                 <div class="row-detail" layout-fill-height layout="column">
 
                     <!-- Header main numbers -->
-                    <div layout="column" layout-align="start start">
+                    <div layout="column" layout-align="start start" layout-fill>
                         <div layout="row" layout-align="space-between start" layout-fill-width class="header-detail ">
                             <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
-                                <img src="../../../../assets/images/bird-in-broken-egg-from-side-view.svg"/>
+                                <img src="../../../../assets/images/bird-in-broken-egg.svg"/>
                                 <div layout-small-padding></div>
                                 <span class="fat-number-detail">{{row.age}} </span>
                                 <span class="mid-number-detail"> {{row.age > 1 ? 'jours' : 'jour'}}</span>
@@ -42,7 +42,7 @@
                         </div>
 
                         <!-- Cost informations -->
-                        <div layout="row" layout-align="start start" layout-fill-width class="cost-detail" >
+                        <div layout="row" layout-align="start start" layout-fill-width class="cost-detail">
 
                             <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
                                 <h3><strong>Items</strong></h3>
@@ -93,36 +93,56 @@
 
 
                         <!-- Array of food and culling-->
-                        <div layout="row" layout-align="start start" layout-fill-width>
-                            <div layout="column"
-                                 layout-align="center center"
-                                 layout-fill-width
-                                 *ngFor="let culling of row.culling"
-                                 style="border-right: 1px solid grey;">
+                        <div layout="row" layout-align="center center" layout-fill>
+
+                            <div layout="row" layout-align="center center" layout-fill style="border-right: 1px solid grey;">
+                                <img src="../../../../assets/images/christmas-turkey.svg"/>
 
                                 <div layout-padding></div>
 
-                                <span class="food-culling-container">
-                                    <span class="food-culling">{{culling.quantity}}</span>
-                                    {{culling.quantity > 1 ? ' poulets abbatus' : 'poulet abattu'}} le
-                                    <span class="food-culling">{{culling.date}}</span>
-                                </span>
-                                <div layout-padding></div>
+                                <div layout="column" layout-align="center center">
+                                    <div layout-small-padding></div>
+
+                                    <div *ngFor="let culling of row.culling">
+
+                                        <div layout-very-small-padding></div>
+
+                                        <span class="food-culling-container">
+                                            &bull;
+                                            <span class="food-culling">{{culling.quantity}}</span>
+                                            {{culling.quantity > 1 ? ' poulets abbatus' : 'poulet abattu'}} le
+                                        <span class="food-culling">{{culling.date}}</span>
+                                    </span>
+                                    </div>
+
+                                    <div layout-padding></div>
+
+                                </div>
                             </div>
 
-                            <div layout="column"
-                                 layout-align="center center"
-                                 layout-fill-width
-                                 *ngFor="let food of henhouse">
+                            <div layout="row" layout-align="center center" layout-fill>
+                                <img src="../../../../assets/images/bird-eating-seeds.svg"/>
 
                                 <div layout-padding></div>
 
-                                <span class="food-culling-container">
-                                    <span class="food-culling">{{food.quantity}}</span>
-                                    {{food.quantity > 1 ? ' sacs de graines utilisés' : 'sac de graines utilisé'}} le
-                                    <span class="food-culling">{{food.date}}</span>
-                                </span>
-                                <div layout-padding></div>
+                                <div layout="column" layout-align="center center">
+                                    <div layout-small-padding></div>
+
+                                    <div *ngFor="let food of henhouse">
+
+                                        <div layout-very-small-padding></div>
+
+                                        <span class="food-culling-container">
+                                            &bull;
+                                            <span class="food-culling">{{food.quantity}}</span>
+                                            {{food.quantity > 1 ? ' sacs de graines utilisés' : 'sac de graines utilisé'}} le
+                                        <span class="food-culling">{{food.date}}</span>
+                                    </span>
+                                    </div>
+
+                                    <div layout-padding></div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,7 +166,7 @@
                     <md-icon>remove_red_eye</md-icon>
                 </div>
 
-                <div>
+                <div class="text-center">
                     <span *ngIf="!value.editButton && !value.detailButton">{{value}}</span>
                 </div>
 

@@ -38,7 +38,10 @@
                                      [formControl]="form.controls.chicken.controls[i].controls.chicken"></app-inline-edit>
                 </td>
                 <td span="1">
-                    <input type="checkbox" [formControl]="form.controls.abats.controls[i].controls.abats">
+                    <!--<input type="checkbox" [formControl]="form.controls.abats.controls[i].controls.abats">-->
+
+                    <md-checkbox [formControl]="form.controls.abats.controls[i].controls.abats"></md-checkbox>
+
                 </td>
                 <td span="1">
                     <app-inline-edit type="text"

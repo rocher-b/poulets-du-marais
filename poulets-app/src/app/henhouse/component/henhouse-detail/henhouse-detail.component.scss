@@ -32,6 +32,7 @@
 
         .dashed-divider {
             border-left: 1px dashed $grey-2;
+
             &:first-child {
                 border-left: 0;
             }
@@ -45,12 +46,10 @@
 
     .food-culling-container {
         font-size: rem(1.6);
-        border-bottom: 1px solid $grey-4;
-        padding-bottom: 10px;
+        font-style: italic;
 
         .food-culling {
             color: $primary;
-
             font-size: rem(2);
         }
     }
