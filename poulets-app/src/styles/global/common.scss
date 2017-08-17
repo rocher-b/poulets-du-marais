@@ -102,6 +102,8 @@ body {
         overflow: auto; // super import to fix scroll issues
         transition: padding-left .7s ease-in-out;
         padding-left: 0;
+        background: rgb(252, 250, 245);
+
     }
 
     .content.opened {

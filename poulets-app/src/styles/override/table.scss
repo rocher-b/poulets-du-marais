@@ -71,7 +71,7 @@ table.srfp-table, ngx-datatable {
     datatable-row-wrapper {
         &:nth-child(even) {
             datatable-body-row {
-                background: rgba(204, 204, 204, .1);
+                background: rgba(225, 225, 225, .4) !important;
             }
         }
         &:last-child {
@@ -84,7 +84,6 @@ table.srfp-table, ngx-datatable {
             }
         }
     }
-
 
     tr, datatable-body-row {
         border-bottom: 1px solid $grey-4;
@@ -273,10 +272,11 @@ table.srfp-table, ngx-datatable {
     datatable-body {
 
         .datatable-row-detail {
+            background: rgb(255, 252, 252);
             border-bottom: 1px solid $grey-4;
 
             .row-detail {
-                padding: 10px 20px 10px 20px;
+                padding: 10px 20px 20px 20px;
                 border-right: 1px solid $grey-4;
                 border-left: 1px solid $grey-4;
             }

@@ -14,6 +14,7 @@
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                 <div class="row-detail" layout-fill-height layout="column">
 
+                    <!-- Header main numbers -->
                     <div layout="column" layout-align="start start">
                         <div layout="row" layout-align="space-between start" layout-fill-width class="header-detail ">
                             <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
@@ -38,87 +39,91 @@
                                 <span class="fat-number-detail">{{row.loss}}</span>
                                 <span class="mid-number-detail">pertes</span>
                             </div>
-
                         </div>
 
-                        <div layout-padding></div>
+                        <!-- Cost informations -->
+                        <div layout="row" layout-align="start start" layout-fill-width class="cost-detail" >
 
+                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                <h3><strong>Items</strong></h3>
+
+                                <span>Abattage</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>Aliments</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>Achat</span>
+
+                                <div layout-medium-padding></div>
+                                <div layout-small-padding></div>
+                                <div layout-very-small-padding></div>
+                            </div>
+
+                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                <h3><strong>Coûts unitaires</strong></h3>
+
+                                <span>{{row.cost.cullingUP}} €</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>{{row.cost.foodUP}} €</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>{{row.cost.purchasingUP}} €</span>
+                                <div layout-medium-padding></div>
+                                <div layout-small-padding></div>
+                                <div layout-very-small-padding></div>
+                            </div>
+
+                            <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                <h3><strong>Coûts totaux</strong></h3>
+
+                                <span>{{row.cost.cullingUP  * row.quantity}} €</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>{{row.cost.foodUP  * row.quantity}} €</span>
+
+                                <div layout-very-small-padding></div>
+                                <span>{{row.cost.purchasingUP  * row.quantity}} €</span>
+
+                                <div layout-padding></div>
+                                <h3 class="total-cost"><strong>{{totalCost}} €</strong></h3>
+                            </div>
+                        </div>
+
+
+                        <!-- Array of food and culling-->
                         <div layout="row" layout-align="start start" layout-fill-width>
+                            <div layout="column"
+                                 layout-align="center center"
+                                 layout-fill-width
+                                 *ngFor="let culling of row.culling"
+                                 style="border-right: 1px solid grey;">
 
-                        </div>
+                                <div layout-padding></div>
 
-                        <div layout="row" layout-align="start start" layout-fill-width>
+                                <span class="food-culling-container">
+                                    <span class="food-culling">{{culling.quantity}}</span>
+                                    {{culling.quantity > 1 ? ' poulets abbatus' : 'poulet abattu'}} le
+                                    <span class="food-culling">{{culling.date}}</span>
+                                </span>
+                                <div layout-padding></div>
+                            </div>
 
-                        </div>
-                    </div>
+                            <div layout="column"
+                                 layout-align="center center"
+                                 layout-fill-width
+                                 *ngFor="let food of henhouse">
 
+                                <div layout-padding></div>
 
-                    <div layout="row">
-                        <span><strong>Coûts unitaires : </strong></span>
-
-                        <div layout-very-small-padding></div>
-
-                        <div layout="column">
-                            <span>Abattage : {{row.cost.cullingUP}}€</span>
-
-                            <div layout-very-small-padding></div>
-                            <span>Aliments : {{row.cost.foodUP}}€</span>
-
-                            <div layout-very-small-padding></div>
-                            <span>Achat : {{row.cost.purchasingUP}}€</span>
-                        </div>
-                    </div>
-
-                    <div layout-padding></div>
-
-                    <div layout="row" layout-align="space-around start">
-                        <table class="srfp-table row-detail-array">
-                            <thead>
-                            <tr>
-                                <th colspan="2">Abattage</th>
-                            </tr>
-                            </thead>
-                            <tr *ngFor="let culling of row.culling">
-                                <td>Date : {{culling.date}}</td>
-                                <td>Abattus : {{culling.quantity}}</td>
-                            </tr>
-                        </table>
-
-                        <table class="srfp-table row-detail-array">
-                            <thead>
-                            <tr>
-                                <th colspan="2">Aliments</th>
-                            </tr>
-                            </thead>
-                            <tr *ngFor="let food of henhouse">
-                                <td>Date : {{food.date}}</td>
-                                <td>Quantité : {{food.quantity}}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div layout-padding></div>
-
-                    <div layout="row">
-
-                        <span><strong>Coûts totaux : </strong></span>
-
-                        <div layout-very-small-padding></div>
-
-                        <div layout="column">
-                            <span>Abattage : {{row.cost.cullingUP * row.quantity}}€</span>
-
-                            <div layout-very-small-padding></div>
-                            <span>Aliments : {{row.cost.foodUP * row.quantity}}€</span>
-
-                            <div layout-very-small-padding></div>
-                            <span>Achat : {{row.cost.purchasingUP * row.quantity}}€</span>
-
-                            <div layout-small-padding></div>
-                            <span><strong>Total : {{ totalCost }}€</strong></span>
-
-                            <div layout-small-padding></div>
-
+                                <span class="food-culling-container">
+                                    <span class="food-culling">{{food.quantity}}</span>
+                                    {{food.quantity > 1 ? ' sacs de graines utilisés' : 'sac de graines utilisé'}} le
+                                    <span class="food-culling">{{food.date}}</span>
+                                </span>
+                                <div layout-padding></div>
+                            </div>
                         </div>
                     </div>
                 </div>

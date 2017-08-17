@@ -41,7 +41,6 @@ export class HenhouseDetailComponent implements OnInit {
 
     ngOnInit() {
         this.rows$ = this.chickenService.getListByHenhouse(this.activatedRoute.snapshot.params.id).map(chickens => chickens.map(chicken => {
-            console.log("chicken:", chicken);
             return buildRowWithEdit({
                 ...chicken,
                 cost: {

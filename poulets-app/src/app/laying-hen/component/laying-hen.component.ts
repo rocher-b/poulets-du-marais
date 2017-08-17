@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { LayingHenService } from '../service/laying-hen.service';
-import { MdDialog } from "@angular/material";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../shared/component/helper/array-builder';
+import { LayingHenService } from '../service/laying-hen.service';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { buildColumn, buildColumnWithEdit, buildRowWithEdit } from '../../shared
     styleUrls: ['./laying-hen.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LayingHenComponent {
+export class LayingHenComponent implements OnInit {
 
     columns: any[];
 
@@ -21,8 +20,7 @@ export class LayingHenComponent {
     rows: any[];
 
     constructor(protected http: HttpClient,
-                private LayingHenService: LayingHenService,
-                public dialog: MdDialog) {
+                private LayingHenService: LayingHenService) {
 
         this.columns = [
             buildColumn('N° lot','batch', 60),

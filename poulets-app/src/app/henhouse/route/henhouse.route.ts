@@ -11,24 +11,19 @@ export const HENHOUSE_ROUTES: Routes = [
         component: ChickenComponent
     },
     {
-        path: 'laying-hens',
+        path: 'laying-hen',
         component: LayingHenComponent
     },
     {
-        path: 'henhouse',
-        children: [
-            {
-                path: 'list',
-                component: HenhouseListComponent
-            },
-            {
-                path: ':id',
-                component: HenhouseDetailComponent
-            },
-            {
-                path: ':id/edit',
-                component: HenhouseFormComponent
-            }
-        ]
+        path: 'list',
+        component: HenhouseListComponent
+    },
+    {
+        path: ':id',
+        component: HenhouseDetailComponent
+    },
+    {
+        path: ':id/edit',
+        component: HenhouseFormComponent
     }
 ];
