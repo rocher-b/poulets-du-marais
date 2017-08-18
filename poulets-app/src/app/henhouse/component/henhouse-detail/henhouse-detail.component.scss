@@ -4,7 +4,6 @@
 :host {
 
     .header {
-        background: rgba(204, 204, 204, .3);
         padding: 20px 25px;
         margin-bottom: 10px;
     }
@@ -27,11 +26,11 @@
 
     .cost-detail {
         border-bottom: 1px solid $grey-2;
-        padding: 20px 0 20px 0;
 
         .title {
             font-size: rem(2);
-            border-bottom: 1px solid $grey-2;
+            text-transform: uppercase;
+            border-bottom: 1px dashed $grey-2;
         }
 
         .dashed-divider {
@@ -49,12 +48,12 @@
     }
 
     .food-culling-container {
-        font-size: rem(1.6);
+        font-size: rem(1.4);
         font-style: italic;
 
         .food-culling {
             color: $primary;
-            font-size: rem(2);
+            font-size: rem(1.6);
         }
     }
 
@@ -69,6 +68,10 @@
 
     img {
         width: 50px;
+
+        &.secondary {
+            width: 40px;
+        }
 
         &.table-row-button {
             width: 23px;

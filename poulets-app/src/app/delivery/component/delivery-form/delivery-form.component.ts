@@ -82,6 +82,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
                     this.deliveriesRowFormat = this.buildPrefilledRows(delivery);
                     return this.deliveriesRowFormat;
                 });
+            this.deliveries$.subscribe(el => console.log("el: ", el));
         }
     }
 

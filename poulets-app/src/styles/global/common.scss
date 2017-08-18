@@ -17,9 +17,6 @@ $i: .125;
     $i: $i + .125;
 }
 
-// Replacing the following lines
-// <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-// because Renault production environment does not allow external link
 @font-face {
     font-family: 'Material Icons';
     font-style: normal;
@@ -157,7 +154,7 @@ form {
     text-transform: uppercase;
 }
 
-h1, h2, h3, h4, h5, h6, .font-renault {
+h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     font-family: 'Muli', serif;
 }

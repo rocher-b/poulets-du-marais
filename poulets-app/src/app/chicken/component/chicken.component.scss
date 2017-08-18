@@ -1,11 +1,80 @@
+@import "functions";
+@import "palette";
+
 :host {
+
     .header {
-        background: rgba(204, 204, 204, .3);
         padding: 20px 25px;
         margin-bottom: 10px;
     }
 
     .table {
         padding: 0 25px 0 25px;
+    }
+
+    .header-detail {
+        border-bottom: 1px solid $grey-2;
+
+        .fat-divider {
+            padding: 15px 0 20px 0;
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+
+    .cost-detail {
+        border-bottom: 1px solid $grey-2;
+
+        .title {
+            font-size: rem(2);
+            text-transform: uppercase;
+            border-bottom: 1px dashed $grey-2;
+        }
+
+        .dashed-divider {
+            border-left: 1px dashed $grey-2;
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+    }
+
+    .total-cost {
+        border: 2px ridge $primary;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .food-culling-container {
+        font-size: rem(1.4);
+        font-style: italic;
+
+        .food-culling {
+            color: $primary;
+            font-size: rem(1.6);
+        }
+    }
+
+    .fat-number-detail {
+        font-size: rem(3.5);
+        padding-right: 7px;
+    }
+
+    .mid-number-detail {
+        font-size: rem(2.0);
+    }
+
+    img {
+        width: 50px;
+
+        &.secondary {
+            width: 40px;
+        }
+
+        &.table-row-button {
+            width: 23px;
+        }
     }
 }

@@ -1,26 +1,24 @@
 <div layout="column">
-    <a class="entry"
+    <a class="entry no-border"
        [routerLink]="['']"
        layout-fill-width>
         Accueil
     </a>
+
+    <div class="divider">Données</div>
+
     <a class="entry"
-         [routerLink]="['customers', 'list']"
-         routerLinkActive="active-link"
-         layout-fill-width>
-        Clients
-    </a>
-    <a class="entry"
-       [routerLink]="['/delivery', 'list']"
+       [routerLink]="['customers', 'list']"
        routerLinkActive="active-link"
        layout-fill-width>
-        Livraison
+        Clients
     </a>
+
     <a class="entry"
        layout-fill-width>
         Conserves
     </a>
-    <a class="entry"
+    <a class="entry no-border"
        layout="row"
        layout-align="space-between center"
        layout-fill-width
@@ -48,6 +46,27 @@
              routerLinkActive="active-link"
              layout-fill-width>
             Poulaillers
+        </div>
+    </div>
+
+    <div class="divider">Templates de fiches </div>
+
+    <a class="entry"
+       layout="row"
+       layout-align="space-between center"
+       layout-fill-width
+       (click)="sheetsOpened = !sheetsOpened">
+        Fiches
+        <md-icon *ngIf="!sheetsOpened">keyboard_arrow_down</md-icon>
+        <md-icon *ngIf="sheetsOpened">keyboard_arrow_up</md-icon>
+    </a>
+    <div [class.opened]="sheetsOpened"
+         class="submenu">
+        <div class="subentry"
+             [routerLink]="['/delivery', 'list']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Fiches de livraison
         </div>
     </div>
 </div>

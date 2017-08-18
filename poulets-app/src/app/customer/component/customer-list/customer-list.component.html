@@ -31,12 +31,9 @@
                     </div>
                 </div>
 
-                <div *ngIf="isBoolean(value) && value === true" style="color: green;" layout-fill-width class="text-center">
-                    <md-icon>check</md-icon>
-                </div>
-
-                <div *ngIf="isBoolean(value) && value === false" style="color: red;" layout-fill-width class="text-center">
-                    <md-icon>clear</md-icon>
+                <div layout-fill-width class="text-center">
+                    <md-icon *ngIf="isBoolean(value) && value" style="color: green;">check</md-icon>
+                    <md-icon *ngIf="isBoolean(value) && value === false" style="color: red;">clear</md-icon>
                 </div>
 
                 <span *ngIf="!value.editButton && !isBoolean(value)"> {{setValue(value)}} </span>

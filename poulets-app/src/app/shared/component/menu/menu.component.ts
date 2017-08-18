@@ -13,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class MenuComponent {
     dataOpened: boolean;
 
+    sheetsOpened: boolean;
+
     constructor(private route: ActivatedRoute) {
     }
 

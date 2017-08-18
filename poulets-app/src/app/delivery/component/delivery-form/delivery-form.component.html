@@ -1,6 +1,12 @@
 <div layout-padding></div>
 
 <div class="table">
+
+    <div>
+        <label classe="title"> Edition de la livraison du {{deliveries$.date}}</label>
+    </div>
+
+    <div layout-padding></div>
     <!--(keydown.enter)="$event.preventDefault()" Allow to preven the submission of the form pressing enter,-->
     <!--since it is used to validate the inline edit input-->
     <form [formGroup]="form" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">

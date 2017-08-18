@@ -19,7 +19,7 @@ export class HenhouseDetailComponent implements OnInit, OnDestroy {
     columns: any[];
     rows$: Observable<any[]>;
 
-    henhouse: any;
+    henhouseFood$: any;
 
     rowOpened: boolean[];
 
@@ -62,7 +62,7 @@ export class HenhouseDetailComponent implements OnInit, OnDestroy {
         }));
 
         this.henhouseService.getDetails(this.activatedRoute.snapshot.params.id).subscribe(res => {
-            this.henhouse = res.food;
+            this.henhouseFood$ = res.food;
         });
 
     }

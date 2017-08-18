@@ -5,7 +5,7 @@ export class Chicken {
     quantity: string;
     loss?: string;
     arrivingDate: string;
-    cullingDate?: boolean;
+    cullingDate?: string;
     henhouseId?: string;
     cost?: Cost;
     culling?: Culling[];
@@ -29,10 +29,10 @@ export class Chicken {
 }
 
 export interface Cost {
-    purchasingPriceUP: string;
-    cullingCostUP: string;
+    purchasingUP: string;
+    cullingUP: string;
     foodUP: string;
-    totalUP: string;
+    totalUP?: string;
 }
 
 export interface Culling {
