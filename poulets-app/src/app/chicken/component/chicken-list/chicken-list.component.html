@@ -1,0 +1,198 @@
+<div layout-padding></div>
+<div class="table">
+    <ngx-datatable
+            #myTable
+            class="material"
+            [rows]="rows$ | async"
+            [columns]="columns"
+            columnMode="force"
+            [footerHeight]="30"
+            [rowHeight]="'auto'"
+            [limit]="15">
+
+        <ngx-datatable-row-detail [rowHeight]="'auto'" #myDetailRow (toggle)="onDetailToggle($event)">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div class="row-detail" layout-fill-height layout="column">
+
+                    <!-- Header main numbers -->
+                    <div layout="column" layout-align="start start" layout-fill>
+                        <div layout="row" layout-align="space-between start" layout-fill-width class="header-detail ">
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/bird-in-broken-egg.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.age}} </span>
+                                <span class="mid-number-detail"> {{row.age > 1 ? 'jours' : 'jour'}}</span>
+                            </div>
+
+                            <div layout-small-padding></div>
+
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/birds-group.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.quantity}}</span>
+                                <span class="mid-number-detail">poulets</span>
+                            </div>
+
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/catholicism.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.loss}}</span>
+                                <span class="mid-number-detail">pertes</span>
+                            </div>
+                        </div>
+
+                        <!-- Cost informations -->
+                        <div layout="column" layout-align="center center" layout-fill-width class="cost-detail">
+                            <span class="text-center title" layout-fill-width style="background: rgba(204, 204, 204, .3);">
+                                <div layout-small-padding></div>
+                                    Détails des coûts
+                                <div layout-small-padding></div>
+                            </span>
+
+                            <div layout="row" layout-align="start start" layout-fill-width>
+
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <div layout-small-padding></div>
+
+                                    <h3><strong>Items</strong></h3>
+
+                                    <span>Abattage</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>Aliments</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>Achat</span>
+
+                                    <div layout-medium-padding></div>
+                                    <div layout-small-padding></div>
+                                    <div layout-very-small-padding></div>
+                                </div>
+
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <div layout-small-padding></div>
+
+                                    <h3><strong>Coûts unitaires</strong></h3>
+
+                                    <span>{{row.cost.cullingUP}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.foodUP}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{row.cost.purchasingUP}} €</span>
+                                    <div layout-medium-padding></div>
+                                    <div layout-small-padding></div>
+                                    <div layout-very-small-padding></div>
+                                </div>
+
+                                <div layout="column" layout-align="center center" class="dashed-divider" layout-fill-width>
+                                    <div layout-small-padding></div>
+
+                                    <h3><strong>Coûts totaux</strong></h3>
+
+                                    <span>{{roundNumber(row.cost.cullingUP  * row.quantity)}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{roundNumber(row.cost.foodUP  * row.quantity)}} €</span>
+
+                                    <div layout-very-small-padding></div>
+                                    <span>{{roundNumber(row.cost.purchasingUP  * row.quantity)}} €</span>
+
+                                    <div layout-padding></div>
+                                    <h3 class="total-cost"><strong>{{totalCost}} €</strong></h3>
+                                </div>
+
+                                <div layout-small-padding></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Array of food and culling-->
+                        <div layout="row" layout-align="center center" layout-fill>
+
+                            <div layout="row" layout-align="center center" layout-fill style="border-right: 1px solid grey;">
+                                <img class="secondary" src="../../../../assets/images/christmas-turkey.svg"/>
+
+                                <div layout-padding></div>
+
+                                <div layout="column" layout-align="center center">
+                                    <div layout-small-padding></div>
+
+                                    <div *ngFor="let culling of row.culling">
+
+                                        <div layout-very-small-padding></div>
+
+                                        <span class="food-culling-container">
+                                            &bull;
+                                            <span class="food-culling">{{culling.quantity}}</span>
+                                            {{culling.quantity > 1 ? ' poulets abbatus' : 'poulet abattu'}} le
+                                        <span class="food-culling">{{culling.date}}</span>
+                                    </span>
+                                    </div>
+
+                                    <div layout-padding></div>
+
+                                </div>
+                            </div>
+
+                            <div layout="row" layout-align="center center" layout-fill>
+                                <img class="secondary" src="../../../../assets/images/bird-eating-seeds.svg"/>
+
+                                <div layout-padding></div>
+
+                                <div layout="column" layout-align="center center">
+                                    <div layout-small-padding></div>
+
+                                    <div *ngFor="let food of row.food">
+
+                                        <div layout-very-small-padding></div>
+
+                                        <span class="food-culling-container">
+                                            &bull;
+                                            <span class="food-culling">{{food.quantity}}</span>
+                                            {{food.quantity > 1 ? ' sacs de graines utilisés' : 'sac de graines utilisé'}} le
+                                        <span class="food-culling">{{food.date}}</span>
+                                    </span>
+                                    </div>
+
+                                    <div layout-padding></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-row-detail>
+
+        <ngx-datatable-column [name]="column.name"
+                              [draggable]="false"
+                              [resizeable]="false"
+                              [sortable]="column.sortable"
+                              [prop]="column.prop"
+                              [maxWidth]="column.maxWidth"
+                              *ngFor="let column of columns">
+            <ng-template let-row="row" let-expanded="expanded" let-value="value" ngx-datatable-cell-template>
+                <div *ngIf="value.editButton" class="edit-button cursor" >
+                    <md-icon [routerLink]="['..', value.entityId, 'edit']">mode_edit</md-icon>
+                </div>
+
+                <div *ngIf="value.detailButton" class="edit-button cursor" (click)="toggleExpandRow(row);">
+                    <img *ngIf="checkIndexOpened(row['$$index'])" class="table-row-button" src="../../../../assets/images/blink.svg"/>
+                    <img *ngIf="!checkIndexOpened(row['$$index'])" class="table-row-button" src="../../../../assets/images/visible-opened-eye-interface-option.svg"/>
+                </div>
+
+                <div class="text-center">
+                    <span *ngIf="!value.editButton && !value.detailButton">{{value}}</span>
+                </div>
+
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+</div>
+
+
+

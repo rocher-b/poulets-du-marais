@@ -39,7 +39,6 @@
                 "purchasingPriceUP": "string",
                 "cullingCostUP": "string",
                 "foodUP": "string",
-                "totalUP": "string"
             }
         },
         "culling": {

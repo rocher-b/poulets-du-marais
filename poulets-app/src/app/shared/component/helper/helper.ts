@@ -11,3 +11,7 @@ export function checkModeWithUrl(url: string): MODE {
         return null;
     }
 }
+
+export function roundNumber(number: number) {
+    return (Math.round(number * 1000) / 1000);
+}

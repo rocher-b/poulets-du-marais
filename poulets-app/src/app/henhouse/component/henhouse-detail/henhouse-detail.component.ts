@@ -71,7 +71,7 @@ export class HenhouseDetailComponent implements OnInit, OnDestroy {
         this.table.rowDetail.toggleExpandRow(row);
         this.rowOpened[row['$$index']] = !this.rowOpened[row['$$index']];
 
-        this.totalCost = ((row.cost.cullingUP * row.quantity) + ((row.cost.foodUP * row.quantity)) + ((row.cost.purchasingUP * row.quantity)));
+        this.totalCost = ((row.cost.cullingUP * row.quantity) + (row.cost.foodUP * row.quantity) + (row.cost.purchasingUP * row.quantity));
         this.totalCost = Math.round(this.totalCost * 1000) / 1000;
     }
 

@@ -32,7 +32,6 @@ export interface Cost {
     purchasingUP: string;
     cullingUP: string;
     foodUP: string;
-    totalUP?: string;
 }
 
 export interface Culling {

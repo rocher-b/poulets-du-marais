@@ -5,7 +5,6 @@ export class LayingHen {
     actualQuantity?: string;
     loss?: string;
     arrivingDate: string;
-    cullingDate?: boolean;
     henhouseId: string;
     sold?: string;
     cost?: Cost;
@@ -21,7 +20,6 @@ export class LayingHen {
             this.actualQuantity = layingHen.actualQuantity;
             this.loss = layingHen.loss;
             this.arrivingDate = layingHen.arrivingDate;
-            this.cullingDate = layingHen.cullingDate;
             this.henhouseId = layingHen.henhouseId;
             this.cost = layingHen.cost;
             this.clutch = layingHen.clutch;
@@ -30,9 +28,8 @@ export class LayingHen {
 }
 
 export interface Cost {
-    purchasingPriceUP: string;
+    purchasingUP: string;
     foodUP: string;
-    totalUP: string;
 }
 
 export interface Clutch {

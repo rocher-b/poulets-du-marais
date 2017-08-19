@@ -33,7 +33,6 @@
             "type": {
                 "purchasingPriceUP": "string",
                 "foodUP": "string",
-                "totalUP": "string"
             }
         },
         "clutch": {

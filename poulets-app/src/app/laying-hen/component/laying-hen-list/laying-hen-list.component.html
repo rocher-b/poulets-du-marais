@@ -3,7 +3,7 @@
     <ngx-datatable
             #myTable
             class="material"
-            [rows]="rows"
+            [rows]="rows$ | async"
             [columns]="columns"
             columnMode="force"
             [footerHeight]="30"
@@ -18,19 +18,17 @@
                     <div layout="column" layout-align="start start" layout-fill>
                         <div layout="row" layout-align="space-between start" layout-fill-width class="header-detail ">
                             <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
-                                <img src="../../../assets/images/bird-in-broken-egg.svg"/>
+                                <img src="../../../../assets/images/bird-in-broken-egg.svg"/>
                                 <div layout-small-padding></div>
                                 <span class="fat-number-detail">{{row.age}} </span>
                                 <span class="mid-number-detail"> {{row.age > 1 ? 'jours' : 'jour'}}</span>
                             </div>
 
-                            <div layout-small-padding></div>
-
                             <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
                                 <img src="../../../../assets/images/birds-group.svg"/>
                                 <div layout-small-padding></div>
-                                <span class="fat-number-detail">{{row.quantity}}</span>
-                                <span class="mid-number-detail">poulets</span>
+                                <span class="fat-number-detail">{{row.actualQuantity}}</span>
+                                <span class="mid-number-detail">poules</span>
                             </div>
 
                             <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
@@ -38,6 +36,13 @@
                                 <div layout-small-padding></div>
                                 <span class="fat-number-detail">{{row.loss}}</span>
                                 <span class="mid-number-detail">pertes</span>
+                            </div>
+
+                            <div layout="row" layout-align="center center" class="fat-divider" layout-fill-width>
+                                <img src="../../../../assets/images/dollar-coin-stack.svg"/>
+                                <div layout-small-padding></div>
+                                <span class="fat-number-detail">{{row.sold}}</span>
+                                <span class="mid-number-detail">{{row.sold > 1 ? 'vendues' : 'vendue'}}</span>
                             </div>
                         </div>
 
@@ -56,9 +61,6 @@
 
                                     <h3><strong>Items</strong></h3>
 
-                                    <span>Abattage</span>
-
-                                    <div layout-very-small-padding></div>
                                     <span>Aliments</span>
 
                                     <div layout-very-small-padding></div>
@@ -74,9 +76,6 @@
 
                                     <h3><strong>Coûts unitaires</strong></h3>
 
-                                    <span>{{row.cost.cullingUP}} €</span>
-
-                                    <div layout-very-small-padding></div>
                                     <span>{{row.cost.foodUP}} €</span>
 
                                     <div layout-very-small-padding></div>
@@ -91,13 +90,10 @@
 
                                     <h3><strong>Coûts totaux</strong></h3>
 
-                                    <span>{{row.cost.cullingUP  * row.quantity}} €</span>
+                                    <span>{{roundNumber(row.cost.foodUP  * row.actualQuantity)}} €</span>
 
                                     <div layout-very-small-padding></div>
-                                    <span>{{row.cost.foodUP  * row.quantity}} €</span>
-
-                                    <div layout-very-small-padding></div>
-                                    <span>{{row.cost.purchasingUP  * row.quantity}} €</span>
+                                    <span>{{roundNumber(row.cost.purchasingUP  * row.actualQuantity)}}€</span>
 
                                     <div layout-padding></div>
                                     <h3 class="total-cost"><strong>{{totalCost}} €</strong></h3>
@@ -112,22 +108,22 @@
                         <div layout="row" layout-align="center center" layout-fill>
 
                             <div layout="row" layout-align="center center" layout-fill style="border-right: 1px solid grey;">
-                                <img class="secondary" src="../../../../assets/images/christmas-turkey.svg"/>
+                                <img class="secondary" src="../../../../assets/images/egg-outline-with-question-sign-inside.svg"/>
 
-                                <div layout-padding></div>
+                                <div layout-small-padding></div>
 
                                 <div layout="column" layout-align="center center">
                                     <div layout-small-padding></div>
 
-                                    <div *ngFor="let culling of row.culling">
+                                    <div *ngFor="let clutch of row.clutch">
 
                                         <div layout-very-small-padding></div>
 
                                         <span class="food-culling-container">
                                             &bull;
-                                            <span class="food-culling">{{culling.quantity}}</span>
-                                            {{culling.quantity > 1 ? ' poulets abbatus' : 'poulet abattu'}} le
-                                        <span class="food-culling">{{culling.date}}</span>
+                                            <span class="food-culling">{{clutch.quantity}}</span>
+                                            oeufs récoltés le
+                                        <span class="food-culling">{{clutch.date}}</span>
                                     </span>
                                     </div>
 
@@ -144,7 +140,7 @@
                                 <div layout="column" layout-align="center center">
                                     <div layout-small-padding></div>
 
-                                    <div *ngFor="let food of henhouseFood">
+                                    <div *ngFor="let food of row.food">
 
                                         <div layout-very-small-padding></div>
 
@@ -174,8 +170,8 @@
                               [maxWidth]="column.maxWidth"
                               *ngFor="let column of columns">
             <ng-template let-row="row" let-expanded="expanded" let-value="value" ngx-datatable-cell-template>
-                <div *ngIf="value.editButton" class="edit-button cursor" (click)="openDialog($event)">
-                    <md-icon>mode_edit</md-icon>
+                <div *ngIf="value.editButton" class="edit-button cursor" >
+                    <md-icon [routerLink]="['..', value.entityId, 'edit']">mode_edit</md-icon>
                 </div>
 
                 <div *ngIf="value.detailButton" class="edit-button cursor" (click)="toggleExpandRow(row);">

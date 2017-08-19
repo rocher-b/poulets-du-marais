@@ -11,7 +11,7 @@ import { Customer } from '../../model/customer.model';
 
 
 @Component({
-    selector: 'app-customer',
+    selector: 'app-customer-list',
     templateUrl: './customer-list.component.html',
     styleUrls: ['./customer-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
