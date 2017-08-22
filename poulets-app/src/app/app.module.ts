@@ -11,6 +11,7 @@ import { HenhouseModule } from './henhouse/henhouse.module';
 import { HomeModule } from "./home/home.module";
 import { LayingHenModule } from './laying-hen/laying-hen.module';
 import { SharedModule } from './shared/shared.module';
+import { FileHistoryModule } from './file-history/file-history.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
       ChickenModule.forRoot(),
       CustomerModule.forRoot(),
       DeliveryModule.forRoot(),
+      FileHistoryModule.forRoot(),
       HenhouseModule.forRoot(),
       HomeModule.forRoot(),
       LayingHenModule.forRoot(),
@@ -29,3 +31,4 @@ import { SharedModule } from './shared/shared.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

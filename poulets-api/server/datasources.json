@@ -1,16 +1,22 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
-  },
-  "pouletsDuMaraisDs": {
-    "host": "ds161012.mlab.com",
-    "port": 61012,
-    "url": "mongodb://damien:dromadaire@ds161012.mlab.com:61012/poulets-du-marais",
-    "database": "poulets-du-marais",
-    "password": "dromadaire",
-    "name": "pouletsDuMaraisDs",
-    "user": "damien",
-    "connector": "mongodb"
-  }
+    "db": {
+        "name": "db",
+        "connector": "memory"
+    },
+    "pouletsDuMaraisDs": {
+        "host": "ds161012.mlab.com",
+        "port": 61012,
+        "url": "mongodb://damien:dromadaire@ds161012.mlab.com:61012/poulets-du-marais",
+        "database": "poulets-du-marais",
+        "password": "dromadaire",
+        "name": "pouletsDuMaraisDs",
+        "user": "damien",
+        "connector": "mongodb"
+    },
+    "model": {
+        "name": "model",
+        "connector": "loopback-component-storage",
+        "provider": "filesystem",
+        "root": "./files"
+    }
 }

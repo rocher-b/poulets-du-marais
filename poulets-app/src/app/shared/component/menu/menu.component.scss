@@ -85,12 +85,12 @@
             }
 
             &.active-link, &:hover, &.custom-active-link {
-                color: $primary;
+                color: $primary-4;
                 font-weight: bold;
 
                 &:before {
                     content: '\25CF';
-                    color: $primary;
+                    color: $primary-4;
                 }
             }
 

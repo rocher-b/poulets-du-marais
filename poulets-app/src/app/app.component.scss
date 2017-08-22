@@ -1,0 +1,20 @@
+@import "functions";
+@import "palette";
+
+img {
+    height: auto;
+    max-width: 35px;
+}
+
+.headline {
+    font-family: 'Indie Flower', cursive;
+    font-style: italic;
+    font-size: rem(3);
+    color: white;
+    text-shadow:
+            3px 3px 0 #000,
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+}

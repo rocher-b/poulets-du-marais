@@ -96,8 +96,3 @@ export class ChickenListComponent implements OnInit, OnDestroy {
     }
 }
 
-export enum HenhouseInfo {
-    NUMBER = 1,
-    FOOD
-}
-

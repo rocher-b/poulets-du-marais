@@ -1,22 +1,27 @@
 import { CommonModule } from '@angular/common';
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './component/home.component';
-import {HOME_ROUTES} from "./route/home.route";
+import { HOME_ROUTES } from "./route/home.route";
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     imports: [
         CommonModule,
+        HttpModule,
         RouterModule.forRoot(HOME_ROUTES),
         SharedModule,
     ],
+
     declarations: [
         HomeComponent
     ],
     exports: []
+
 })
+
 export class HomeModule {
     static forRoot(): ModuleWithProviders {
         return {
@@ -34,4 +39,5 @@ export class HomeModule {
 })
 export class HomeRootModule {
 }
+
 

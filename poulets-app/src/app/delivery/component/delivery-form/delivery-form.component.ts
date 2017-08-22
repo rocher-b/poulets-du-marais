@@ -82,7 +82,6 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
                     this.deliveriesRowFormat = this.buildPrefilledRows(delivery);
                     return this.deliveriesRowFormat;
                 });
-            this.deliveries$.subscribe(el => console.log("el: ", el));
         }
     }
 
@@ -107,6 +106,7 @@ export class DeliveryFormComponent extends CustomForm implements OnInit {
         }
         else if (action === FormAction.ADD) {
             // 'values' is an object with field prefilled for a new row
+            // TODO : use initFormField
             (<FormArray> this.form.controls.order).push(this.fb.group({order: values.order}));
             (<FormArray> this.form.controls.name).push(this.fb.group({name: values.name}));
             (<FormArray> this.form.controls.chicken).push(this.fb.group({chicken: values.chicken}));

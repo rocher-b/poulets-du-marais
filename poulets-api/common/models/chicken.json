@@ -5,51 +5,51 @@
   "options": {
     "validateUpsert": true
   },
-    "properties": {
-        "batch": {
-            "type": "string",
-            "required": true
-        },
-        "age": {
-            "type": "string",
-            "required": true
-        },
-        "quantity": {
-            "type": "string",
-            "required": true
-        },
-        "loss": {
-            "type": "string"
-        },
-        "arrivingDate": {
-            "type": "string",
-            "required": true
-        },
-        "cullingDate": {
-            "type": "string"
-        },
-        "remaining": {
-            "type": "string"
-        },
-        "henhouseId": {
-            "type": "string"
-        },
-        "cost": {
-            "type": {
-                "purchasingPriceUP": "string",
-                "cullingCostUP": "string",
-                "foodUP": "string",
-            }
-        },
-        "culling": {
-            "type": [
-                {
-                    "date": "string",
-                    "quantity": "string"
-                }
-            ]
-        }
+  "properties": {
+    "batch": {
+      "type": "string",
+      "required": true
     },
+    "age": {
+      "type": "string",
+      "required": true
+    },
+    "quantity": {
+      "type": "string",
+      "required": true
+    },
+    "loss": {
+      "type": "string"
+    },
+    "arrivingDate": {
+      "type": "string",
+      "required": true
+    },
+    "cullingDate": {
+      "type": "string"
+    },
+    "remaining": {
+      "type": "string"
+    },
+    "henhouseId": {
+      "type": "string"
+    },
+    "cost": {
+      "type": {
+        "purchasingPriceUP": "string",
+        "cullingCostUP": "string",
+        "foodUP": "string"
+      }
+    },
+    "culling": {
+      "type": [
+        {
+          "date": "string",
+          "quantity": "string"
+        }
+      ]
+    }
+  },
   "validations": [],
   "relations": {},
   "acls": [],
