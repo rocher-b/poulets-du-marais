@@ -1,0 +1,17 @@
+@import "functions";
+@import "palette";
+
+:host {
+    .header {
+        font-family: 'Indie Flower', cursive;
+        font-style: italic;
+        font-size: rem(4);
+        color: white;
+        text-shadow:
+                3px 3px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+    }
+}

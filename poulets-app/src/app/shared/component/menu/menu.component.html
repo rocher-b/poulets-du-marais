@@ -15,9 +15,41 @@
     </a>
 
     <a class="entry"
-       layout-fill-width>
+       layout="row"
+       layout-align="space-between center"
+       layout-fill-width
+       (click)="conservesOpened = !conservesOpened">
         Conserves
+        <md-icon *ngIf="!conservesOpened">keyboard_arrow_down</md-icon>
+        <md-icon *ngIf="conservesOpened">keyboard_arrow_up</md-icon>
     </a>
+    <div [class.opened]="conservesOpened"
+         class="submenu">
+        <div class="subentry"
+             [routerLink]="['conserves', 'mousse']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Mousse
+        </div>
+        <div class="subentry"
+             [routerLink]="['conserves', 'pate']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Pâté
+        </div>
+        <div class="subentry"
+             [routerLink]="['conserves', 'rillettes']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Rillettes
+        </div>
+        <div class="subentry"
+             [routerLink]="['conserves', 'terrine']"
+             routerLinkActive="active-link"
+             layout-fill-width>
+            Terrine
+        </div>
+    </div>
     <a class="entry no-border"
        layout="row"
        layout-align="space-between center"
@@ -49,7 +81,7 @@
         </div>
     </div>
 
-    <div class="divider">Templates de fiches </div>
+    <div class="divider">Templates de fiches</div>
 
     <a class="entry"
        layout="row"

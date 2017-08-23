@@ -15,6 +15,8 @@ export class MenuComponent {
 
     sheetsOpened: boolean;
 
+    conservesOpened: boolean;
+
     constructor(private route: ActivatedRoute) {
     }
 

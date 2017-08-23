@@ -6,6 +6,7 @@ import { HENHOUSE_ROUTES } from './henhouse/route/henhouse.route';
 import { HomeComponent } from './home/component/home.component';
 import { LAYING_HEN_ROUTES } from './laying-hen/route/laying-hen.route';
 import { FILE_HISTORY_ROUTES } from './file-history/route/file-history.route';
+import { CONSERVES_ROUTES } from './conserves/route/conserves.route';
 
 export const APP_ROUTES: Routes = [
     {
@@ -37,5 +38,10 @@ export const APP_ROUTES: Routes = [
     {
         path: 'file-history',
         children: FILE_HISTORY_ROUTES
+    }
+,
+    {
+        path: 'conserves',
+        children: CONSERVES_ROUTES
     }
 ];

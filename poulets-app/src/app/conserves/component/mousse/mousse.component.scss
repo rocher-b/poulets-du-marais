@@ -1,0 +1,17 @@
+@import "functions";
+@import "palette";
+
+:host {
+    .header {
+        font-family: 'Indie Flower', cursive;
+        font-style: italic;
+        font-size: rem(3);
+        color: black;
+    }
+
+    .crafting {
+        font-family: 'Indie Flower', cursive;
+        font-size: rem(2);
+        color: saddlebrown;
+    }
+}

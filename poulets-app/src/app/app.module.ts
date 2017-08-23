@@ -12,12 +12,14 @@ import { HomeModule } from "./home/home.module";
 import { LayingHenModule } from './laying-hen/laying-hen.module';
 import { SharedModule } from './shared/shared.module';
 import { FileHistoryModule } from './file-history/file-history.module';
+import { ConservesModule } from './conserves/conserves.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
       ChickenModule.forRoot(),
+      ConservesModule.forRoot(),
       CustomerModule.forRoot(),
       DeliveryModule.forRoot(),
       FileHistoryModule.forRoot(),

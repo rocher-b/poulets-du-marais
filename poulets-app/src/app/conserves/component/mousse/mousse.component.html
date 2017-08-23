@@ -1,0 +1,42 @@
+<div layout-padding></div>
+
+<div class="table" layout="row">
+    <div layout-padding></div>
+    <ngx-datatable
+            class="material"
+            [rows]="rows"
+            [columns]="columns"
+            columnMode="force"
+            [footerHeight]="30"
+            [rowHeight]="'auto'"
+            [limit]="10">
+        <ngx-datatable-column [name]="column.name"
+                              [draggable]="false"
+                              [resizeable]="false"
+                              [sortable]="column.sortable"
+                              [prop]="column.prop"
+                              [maxWidth]="column.maxWidth"
+                              *ngFor="let column of columns">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <span> {{value}} </span>
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+    <div layout-padding></div>
+    <div layout-padding></div>
+</div>
+
+<div layout="row" layout-align="center start" layout-fill-width="">
+    <div layout="column" layout-align="center start"span="10">
+        <label class="header"> Méthode de fabrication</label>
+        <div layout-small-padding></div>
+
+        <span class="crafting">Hacher le tout à la grille fine (3). Ajouter assaisonnements.
+        Mélanger jusqu'à l'obtention d'une mélée homogène. Répartir en bocaux.
+        Cuire 90min en autoclave à 115°C.</span>
+    </div>
+</div>
+
+
