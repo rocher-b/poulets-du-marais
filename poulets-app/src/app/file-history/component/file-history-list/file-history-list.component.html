@@ -7,7 +7,9 @@
         <div layout="row">
             <div layout-small-padding></div>
 
-            <button md-button color="primary" md-raised-button class="tool-button">Créer</button>
+            <button md-button color="primary" md-raised-button class="tool-button" (click)="openFileBrowser()">Upload</button>
+            <input #fileInput type="file" (change)="upload($event)" placeholder="Upload file" accept=".pdf" style="display:none">
+
         </div>
 
         <div layout-small-padding></div>
@@ -18,25 +20,35 @@
                     <md-card-header layout="row" layout-align="center center">
                         <md-card-title layout="row" layout-align="space-around center" layout-fill-width>
                             <span>{{file.name}}</span>
-                            <div class="divider"></div>
-                            <md-icon class="cursor">delete</md-icon>
+
+                            <div layout="row" layout-align="end center" layout-fill-width>
+                                <div class="divider"></div>
+                                <md-icon class="cursor" (click)="openDeletionDialog(file.name)">delete</md-icon>
+                            </div>
                         </md-card-title>
                     </md-card-header>
 
-                    <md-card-actions layout="row" layout-align="start center">
+                    <md-card-actions class="dual-buttons" span-height="1" layout="row" layout-align="start center">
                         <button md-button
                                 color="primary"
                                 class="hover"
                                 layout-fill
-                        (click)="download(file.name)">
+                                (click)="download(file.name)">
                             Télécharger
+                        </button>
+                        <button md-button
+                                color="primary"
+                                class="hover"
+                                layout-fill
+                                (click)="displayFile(file.name)">
+                            Ouvrir
                         </button>
                     </md-card-actions>
                 </md-card>
             </div>
             <div>
                 <div layout-small-padding></div>
-                <span *ngIf="(fileList$ | async)?.length === 0">Pas de fiche de livraison créé</span>
+                <span *ngIf="(fileList$ | async)?.length === 0">Pas de document uploadé</span>
             </div>
         </div>
     </div>

@@ -63,9 +63,16 @@ export abstract class CustomForm implements OnInit, OnDestroy {
 
     previousPage() {
         /* back not refreshed in time after an update, we apparently should flush the session on the back-side */
-        setTimeout(() => {
-            this.location.back();
-        }, 150);
+        // setTimeout(() => {
+        //     this.location.back();
+        // }, 150);
+
+        if (checkModeWithUrl(this.router.url) == MODE.EDIT) {
+            this.router.navigate(["../../list"], { relativeTo: this.activatedRoute });
+        }
+        else if (checkModeWithUrl(this.router.url) == MODE.CREATE) {
+            this.router.navigate(["../list"], { relativeTo: this.activatedRoute });
+        }
     }
 
     initForm(obj?: any) {

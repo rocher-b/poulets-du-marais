@@ -47,12 +47,13 @@ export class ChickenListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.rows$ = this.chickenService.getList()
-            .switchMap(chickens =>
-                Observable.combineLatest(chickens.map(chicken => {
+            .switchMap(chickens => Observable.combineLatest(chickens.map(chicken => {
                     return this.henhouseService.getDetails(chicken.henhouseId).map(henhouse => [chicken, henhouse]);
                 })).map((chickenInfos: any[]) => {
+                    console.log("hey");
                     return chickenInfos.map(([chicken, henhouse]) => {
                         if (henhouse.number != APP_CONSTANTS.LAYING_HEN_HENHOUSE_NUMBER) {
+                            console.log("number: ", henhouse);
 
                             return buildRowWithEdit({
                                 ...chicken,
@@ -65,12 +66,16 @@ export class ChickenListComponent implements OnInit, OnDestroy {
                                 }
                             });
                         }
+                        else {
+                            return {};
+                        }
                     });
                 })
             );
 
         // This is mostly used for the "eye" detail icon
         this.subscriptions.add(this.rows$.subscribe(rows => {
+            console.log("hey");
             this.rowOpened = new Array(rows.length);
             this.rowOpened.fill(false);
         }));
@@ -95,4 +100,3 @@ export class ChickenListComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 }
-

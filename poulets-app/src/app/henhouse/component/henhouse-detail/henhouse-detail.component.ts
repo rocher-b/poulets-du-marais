@@ -44,26 +44,26 @@ export class HenhouseDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.rows$ = this.chickenService.getListByHenhouse(this.activatedRoute.snapshot.params.id)
-            .map(chickens => chickens
-                .map(chicken => {
-                    return buildRowWithEdit({
-                        ...chicken,
-                        cost: {
-                            cullingUP: (chicken.cost.cullingUP.replace(",", ".")) * 1,
-                            foodUP: (chicken.cost.foodUP.replace(",", ".")) * 1,
-                            purchasingUP: (chicken.cost.purchasingUP.replace(",", ".")) * 1
-                        }
-                    });
-                }));
+
+        this.rows$ = this.chickenService.getListByHenhouse(this.activatedRoute.snapshot.params.id).map(chickens => chickens
+            .map(chicken => {
+                return buildRowWithEdit({
+                    ...chicken,
+                    cost: {
+                        cullingUP: (chicken.cost.cullingUP.replace(",", ".")) * 1,
+                        foodUP: (chicken.cost.foodUP.replace(",", ".")) * 1,
+                        purchasingUP: (chicken.cost.purchasingUP.replace(",", ".")) * 1
+                    }
+                });
+            }));
         this.subscriptions.add(this.rows$.subscribe(rows => {
             this.rowOpened = new Array(rows.length);
             this.rowOpened.fill(false);
         }));
 
-        this.henhouseService.getDetails(this.activatedRoute.snapshot.params.id).subscribe(res => {
+        this.subscriptions.add(this.henhouseService.getDetails(this.activatedRoute.snapshot.params.id).subscribe(res => {
             this.henhouseFood$ = res.food;
-        });
+        }));
 
     }
 

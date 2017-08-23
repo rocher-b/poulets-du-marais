@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from "@angular/router";
+
 import { SharedModule } from '../shared/shared.module';
-import { FileHistoryListComponent } from './component/file-history-list/file-history.component';
 import { FILE_HISTORY_ROUTES } from './route/file-history.route';
 import { FileHistoryService } from './service/file-history.service';
+import { FileHistoryDetailComponent } from './component/file-history-detail/file-history-detail.component';
+import { FileHistoryListComponent } from './component/file-history-list/file-history-list.component';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 @NgModule({
     imports: [
@@ -15,6 +18,7 @@ import { FileHistoryService } from './service/file-history.service';
         SharedModule
     ],
     declarations: [
+        FileHistoryDetailComponent,
         FileHistoryListComponent,
     ],
     schemas: [NO_ERRORS_SCHEMA],
@@ -25,7 +29,8 @@ export class FileHistoryModule {
         return {
             ngModule: FileHistoryRootModule,
             providers: [
-                FileHistoryService
+                FileHistoryService,
+                PdfViewerComponent
             ]
         };
     }
